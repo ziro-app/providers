@@ -10,27 +10,28 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
+        const reqBodyJson = JSON.parse(event.body)
         const body = [[
-            event.queryStringParameters.NomeCompleto,
-            event.queryStringParameters.Apelido,
-            event.queryStringParameters.Nascimento,
-            event.queryStringParameters.EmailPessoal,
-            event.queryStringParameters.EmailEmpresa,
-            event.queryStringParameters.TelefonePessoal,
-            event.queryStringParameters.TelefoneZiro,
-            event.queryStringParameters.SalarioBase,
-            event.queryStringParameters.Comissionado,
-            event.queryStringParameters.Funcao,
-            event.queryStringParameters.CPF,
-            event.queryStringParameters.RG,
-            event.queryStringParameters.OrgaoExp,
-            event.queryStringParameters.DataExp,
-            event.queryStringParameters.EstadoCivil,
-            event.queryStringParameters.Endereco,
+            reqBodyJson.NomeCompleto,
+            reqBodyJson.Apelido,
+            reqBodyJson.Nascimento,
+            reqBodyJson.EmailPessoal,
+            reqBodyJson.EmailEmpresa,
+            reqBodyJson.TelefonePessoal,
+            reqBodyJson.TelefoneZiro,
+            reqBodyJson.SalarioBase,
+            reqBodyJson.Comissionado,
+            reqBodyJson.Funcao,
+            reqBodyJson.CPF,
+            reqBodyJson.RG,
+            reqBodyJson.OrgaoExp,
+            reqBodyJson.DataExp,
+            reqBodyJson.EstadoCivil,
+            reqBodyJson.Endereco,
             " ",
             `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDay()}`,
             "-",
-            event.queryStringParameters.InformacoesAdicionais,
+            reqBodyJson.InformacoesAdicionais,
         ]]
         const optionsGoogle = await optionsPost(body)
             try {
