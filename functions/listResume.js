@@ -13,7 +13,7 @@ exports.handler = function(event, context, callback){
     }
     const getEmployees = async () => {
             try {
-                const data = await rp(optionsGet(`'Resumo ${event.queryStringParameters.ano}'!B3:F`))
+                const data = await rp(optionsGet(`'Resumo ${event.queryStringParameters.ano}'!B4:F`))
                 const resultado = listarResumo(data,event.queryStringParameters.mes)
                 send(resultado)
             } catch (error) {
