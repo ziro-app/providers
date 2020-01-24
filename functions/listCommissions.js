@@ -19,6 +19,7 @@ exports.handler = function(event, context, callback){
                     const resultados = await listarComissoes(dataAssessores,dataResto,event.queryStringParameters.mes,event.queryStringParameters.ano)
                         try {
                             if(event.headers.authorization == process.env.basicAuth){
+                                console.log(event)
                                 send(resultados)
                             }else{
                                 send("Sem autorização para essa aplicação")
