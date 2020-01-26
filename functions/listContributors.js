@@ -12,7 +12,7 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
-        const optionsGoogle = await optionsGet("'Base Funcionários'!A:T")
+        const optionsGoogle = await optionsGet("'Base Funcionários'!A:V")
         try {
             const data = await rp(optionsGoogle)
             try {
