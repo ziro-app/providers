@@ -15,24 +15,24 @@ const assessor2 = (data,dataBaseAssessores, mes,ano) => {
     let resultado =  []
         for(i=0; i< data.values.length; i++){
             let index = resultado1.indexOf(data.values[i][2])
-            if(index !== -1 && ano == 2019 && mes > 8 && data.values[i][2] || index !== -1 && ano > 2019){
+            if(index !== -1 && ano == 2019 && mes > 8 && data.values[i][2] && data.values[i][4] == "Assessor2" || index !== -1 && ano > 2019 && data.values[i][4] == "Assessor2" ){
                 if(Math.round(Number(resultado1[index+1].replace(",","."))) >= 400000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+1400])
+                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+1400,data.values[i][4]])
                 }else if(Math.round(Number(resultado1[index+1].replace(",","."))) >= 300000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+1200])
+                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+1200,data.values[i][4]])
                 }else if(Math.round(Number(resultado1[index+1].replace(",","."))) >= 200000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+900])
+                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+900,data.values[i][4]])
                 }else if(Math.round(Number(resultado1[index+1].replace(",","."))) >= 100000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+500])
+                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+500,data.values[i][4]])
                 }else{
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+0])
+                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))/100)+0,data.values[i][4]])
                 }
             }else{
-                resultado.push([data.values[i][0],data.values[i][1],data.values[i][2]])
+                resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),data.values[i][4]])
             }
         }
 
-    return resultado
+    return {"values": resultado}
 }
 
 

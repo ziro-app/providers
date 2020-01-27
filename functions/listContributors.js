@@ -1,7 +1,8 @@
 const rp = require('request-promise-native');
 const optionsGet = require('./apoio/optionsGetGoogle')
 const listarApelidos = require('./apoio/listarApelidos')
-const listarComissoes = require('./apoio/comissoes/asessores2')
+const listarComissoesAssessores2 = require('./apoio/comissoes/asessores2')
+const listarComissoesProspeccao = require('./apoio/comissoes/prospeccao1')
 require('dotenv').config()
 
 
@@ -13,15 +14,18 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
-        const optionsGoogle = await optionsGet("'Base Funcionários'!A:V")
+        const optionsGoogleBaseFuncionarios = await optionsGet("'Base Funcionários'!A:V")
         const optionsGoogleBaseAssessores = await optionsGet("'Apoio Comissões Assessores'!A:E")
+        const optionsGoogleBaseResto = await optionsGet("'Apoio Comissões'!A:E")
         const dataBaseAssessores = await rp(optionsGoogleBaseAssessores)
-        const data = await rp(optionsGoogle)
-        const listaBaseFuncionarios = await listarApelidos(data,event.queryStringParameters.mes,event.queryStringParameters.ano)
-        const comissoes = await listarComissoes(listaBaseFuncionarios,dataBaseAssessores,event.queryStringParameters.mes,event.queryStringParameters.ano)
+        const dataBaseResto = await rp(optionsGoogleBaseResto)
+        const dataBaseFuncionarios = await rp(optionsGoogleBaseFuncionarios)
+        const listaBaseFuncionarios = await listarApelidos(dataBaseFuncionarios,event.queryStringParameters.mes,event.queryStringParameters.ano)
+        const comissoesAssessores2 = await listarComissoesAssessores2(listaBaseFuncionarios,dataBaseAssessores,event.queryStringParameters.mes,event.queryStringParameters.ano)
+        const comissoesProspeccao = await listarComissoesProspeccao(comissoesAssessores2,dataBaseResto,event.queryStringParameters.mes,event.queryStringParameters.ano)
         try {
-            console.log(comissoes)
-            send(comissoes)
+            console.log(comissoesProspeccao)
+            send(comissoesProspeccao)
         } catch (error) {
             send(error)
         }
