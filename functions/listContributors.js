@@ -1,6 +1,7 @@
 const rp = require('request-promise-native');
 const optionsGet = require('./apoio/optionsGetGoogle')
 const listarApelidos = require('./apoio/listarApelidos')
+const listarComissoes = require('./apoio/comissoes/asessores2')
 require('dotenv').config()
 
 
@@ -13,30 +14,21 @@ exports.handler = function(event, context, callback){
     }
     const getEmployees = async () => {
         const optionsGoogle = await optionsGet("'Base Funcionários'!A:V")
+        const optionsGoogleBaseAssessores = await optionsGet("'Apoio Comissões Assessores'!A:E")
+        const dataBaseAssessores = await rp(optionsGoogleBaseAssessores)
+        const data = await rp(optionsGoogle)
+        const listaBaseFuncionarios = await listarApelidos(data,event.queryStringParameters.mes,event.queryStringParameters.ano)
+        const comissoes = await listarComissoes(listaBaseFuncionarios,dataBaseAssessores,event.queryStringParameters.mes,event.queryStringParameters.ano)
         try {
-            const data = await rp(optionsGoogle)
-            try {
-                let resultados = await listarApelidos(data,event.queryStringParameters.mes,event.queryStringParameters.ano)
-                try {
-                    if(event.headers.authorization == process.env.basicAuth){
-                        console.log(event)
-                        send(resultados)
-                    }else{
-                        send("Sem autorização para essa aplicação")
-                    }
-                } catch (error) {
-                    send("Error na função listar apelidos",error)
-                }
-            } catch (error) {
-                console.log("Error na requisição do Sheets", error)
-                send(error)
-            }
+            console.log(comissoes)
+            send(comissoes)
         } catch (error) {
-            console.log("Erro no Options do Sheets", error)
             send(error)
         }
     }
-    if(event.httpMethod == 'GET'){
+    if(event.httpMethod == 'GET' && event.headers.authorization == process.env.basicAuth){
         getEmployees()
+    }else{
+        send("Erro na autenticação ou no metodo HTTP!")
     }
 }
