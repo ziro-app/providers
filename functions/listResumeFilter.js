@@ -18,7 +18,7 @@ exports.handler = function(event, context, callback){
                 send(error)
             }
         }else{
-            let resultado = "Necessário determinar o mes e o ano por query params para a função funcionar"
+            const resultado = "Necessário determinar o mes e o ano por query params para a função funcionar"
             try {
                 send(resultado)
             } catch (error) {
