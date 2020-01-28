@@ -26,7 +26,7 @@ const assessor = {
 }
 
 const comissao = {
-	values: [[
+	values: [[	
 			'1',
 			'2019',
 			'Rubia',
