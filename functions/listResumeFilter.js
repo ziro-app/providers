@@ -10,21 +10,12 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
-        if(event.queryStringParameters.mes != undefined || event.queryStringParameters.ano != undefined){
             const resultado = await main(event.queryStringParameters.mes,event.queryStringParameters.ano)
             try {
                 send(resultado)
             } catch (error) {
                 send(error)
             }
-        }else{
-            const resultado = "Necessário determinar o mes e o ano por query params para a função funcionar"
-            try {
-                send(resultado)
-            } catch (error) {
-                send(error)
-            }
-        }
     }
     if(event.httpMethod == 'GET' && event.headers.authorization == process.env.basicAuth){
         getEmployees()
