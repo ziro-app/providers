@@ -1,5 +1,5 @@
 // Segunda comissão dos assessores:
-// Comissão é de 1% das vendas realizadas e bonus conforme a quantidade vendida conforme a tabela abaixo:
+// Comissão é de 10% sobre a receita da venda e bonus conforme a quantidade vendida conforme a tabela abaixo:
 //100000	500
 //200000	900
 //300000	1200
