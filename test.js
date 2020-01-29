@@ -16,10 +16,10 @@ const dataAssessores2 =  {
     ]
 }
 
-test('Comissão Assessor', t => {
-	const value = assessores2(assessor, comissao, 12, 2019)
+test('Comissão Assessor2', t => {
+	const value = assessores2(dataAssessores2)
 	console.log(value)
-	const comissionCalculated = value.values[0][4]
-	const comissionExpected = 932.7
+	const comissionCalculated = value.values[0].parcela2
+	const comissionExpected = 3733.12
 	t.is(comissionCalculated, comissionExpected)
 })
