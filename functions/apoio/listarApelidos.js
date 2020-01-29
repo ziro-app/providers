@@ -14,11 +14,11 @@ const listarApelidos = (data, mes, ano) => {
             }
         }else{
             let arrayApelidos = []
-                for(n=2019; n <= new Date().getFullYear(); n++){
-                    for(let i=1; i <= 12; i++){
+            for(n=2019; n <= new Date().getFullYear(); n++){
+                for(let i=1; i <= 12; i++){
                     for(listar of data.values){
                             if(listar[18] == "-" && new Date(`${n}-${i}-28`) >= new Date(listar[17])){
-                                arrayApelidos.push([n,i,listar[1],listar[7],listar[21]])
+                                arrayApelidos.push({"ano": n, "mes": i,"apelido":listar[1],"parcela 1": listar[7]})
                             }else if(new Date(`${n}-${i}-28`) >= new Date(listar[17]) && new Date(listar[18]) >= new Date(`${n}-${i}-01`)){
                                 arrayApelidos.push([n,i,listar[1],listar[7],listar[21]])
                             }
