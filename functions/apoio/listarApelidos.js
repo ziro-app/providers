@@ -15,7 +15,7 @@ const listarApelidos = (data, mes, ano) => {
         }else{
             let arrayApelidos = []
             for(listar of data.values){
-                for(n=2018; n <= new Date().getFullYear(); n++){
+                for(n=2019; n <= new Date().getFullYear(); n++){
                     for(let i=1; i <= 12; i++){
                             if(listar[18] == "-" && new Date(`${n}-${i}-28`) >= new Date(listar[17])){
                                 arrayApelidos.push([n,i,listar[1],listar[7],listar[21]])
