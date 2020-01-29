@@ -5,9 +5,9 @@
 //300000	1200
 //400000	1400
 
-const transNumb = (numero) => {
+const transNumero = (numero) => {
     return Number(numero.replace(",","."))
-        }
+}
 
 const assessor2020 = (transacionado_mes, receita_mes) => {
     const base = receita_mes * 0.1;
@@ -22,9 +22,9 @@ const assessor2 = (data) => {
     let resultado = []
     for(comissoes2020 of data.values){
         if(comissoes2020[1] >= 2020){
-            resultado.push({"ano": comissoes2020[1],"mes": comissoes2020[0],"apelido": comissoes2020[2],"parcela2":assessor2020(transNumb(comissoes2020[4]), transNumb(comissoes2020[3]))})
-            }
+            resultado.push({"ano": comissoes2020[1],"mes": comissoes2020[0],"apelido": comissoes2020[2],"parcela2":assessor2020(transNumero(comissoes2020[4]), transNumero(comissoes2020[3]))})
         }
+    }
 
     return {"values": resultado}
 }
