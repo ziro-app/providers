@@ -8,24 +8,14 @@
 const transNumb = (numero) => {
     return Number(numero.replace(",","."))
         }
-    }
-    let resultado =  []
-        for(i=0; i< data.values.length; i++){
-            let index = resultado1.indexOf(data.values[i][2])
-            if(index !== -1 && ano > 2019 && data.values[i][4] == "Assessor2" ){
-                if(Math.round(Number(resultado1[index+2].replace(",","."))) >= 400000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))*10/100)+1400,data.values[i][4]])
-                }else if(Math.round(Number(resultado1[index+2].replace(",","."))) >= 300000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))*10/100)+1200,data.values[i][4]])
-                }else if(Math.round(Number(resultado1[index+2].replace(",","."))) >= 200000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))*10/100)+900,data.values[i][4]])
-                }else if(Math.round(Number(resultado1[index+2].replace(",","."))) >= 100000){
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))*10/100)+500,data.values[i][4]])
-                }else{
-                    resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),(Math.round(Number(resultado1[index+1].replace(",",".")))*10/100)+0,data.values[i][4]])
-                }
-            }else{
-                resultado.push([data.values[i][0],data.values[i][1],data.values[i][2],Number(data.values[i][3].replace(",",".")),data.values[i][4]])
+const assessor2020 = (transacionado_mes, receita_mes) => {
+    const base = receita_mes * 0.1;
+    if (transacionado_mes >= 400000) return Math.round((base + 1400)*100)/100
+    if (transacionado_mes >= 300000) return Math.round((base + 1200)*100)/100
+    if (transacionado_mes >= 200000) return Math.round((base + 900)*100)/100
+    if (transacionado_mes >= 100000) return Math.round((base + 500)*100)/100
+    else return Math.round(base*100)/100
+  };
             }
         }
 
