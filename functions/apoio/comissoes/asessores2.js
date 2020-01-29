@@ -5,11 +5,8 @@
 //300000	1200
 //400000	1400
 
-const assessor2 = (data,dataBaseAssessores, mes,ano) => {
-    let resultado1 = []
-    for(i=0; i < dataBaseAssessores.values.length; i++){
-        if(dataBaseAssessores.values[i][0] == mes && dataBaseAssessores.values[i][1] == ano){
-            resultado1.push(dataBaseAssessores.values[i][0],dataBaseAssessores.values[i][1],dataBaseAssessores.values[i][2],dataBaseAssessores.values[i][3],dataBaseAssessores.values[i][4])
+const transNumb = (numero) => {
+    return Number(numero.replace(",","."))
         }
     }
     let resultado =  []
