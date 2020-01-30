@@ -27,7 +27,7 @@ test('Comissão Assessores 2019', async t => {
   const value = assessores2019(dados.receitas_mes_novo_cliente,dados.receita_mes_novo_afiliado,dados.receita_mes_antigo_afiliado);
   const comissionCalculated = value;
   console.log(value)
-  const comissionExpected = 6500;
+  const comissionExpected = 7580;
   t.is(comissionCalculated, comissionExpected);
 });
 
@@ -49,6 +49,6 @@ test('Comissão Lojistica 2019', t => {
 test('Comissão Prospecção 2020', t => {
 	const value = prospeccao2019(dados.transacao_mes_afiliado, dados.receita_mes_novo_afiliado, dados.receita_mes_antigo_afiliado)
 	const comissionCalculated = value
-	const comissionExpected = 7580
+	const comissionExpected = 6500
 	t.is(comissionCalculated, comissionExpected)
 })
