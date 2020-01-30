@@ -1,4 +1,5 @@
 const test = require("ava");
+const assessor2020 = require("./functions/apoio/comissoes/asessores2020");
 
 const dados = {
   receita_mes_ziro: 150000,
@@ -10,6 +11,12 @@ const dados = {
   cobrancas_mes: 100000
 };
 
+test("Comissão Assessor 2020", t => {
+  const value = assessor2020(dados.transacionado_mes, dados.receita_mes);
+  const comissionCalculated = value;
+  const comissionExpected = 3600;
+  t.is(comissionCalculated, comissionExpected);
+});
 
 const dataAssessores2 =  {
     "range": "'Apoio Comissões Assessores'!A2:E45633",
