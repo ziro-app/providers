@@ -1,13 +1,13 @@
 // Função de apoio para o array dado
 let soma = 0
 const limite = (array) =>{
-  for(numb of array){
-    if(numb*0.4 <= 1000){
-      soma += (numb * 0.4)
+  let loop = array.map((item) => {
+    if(item*0.4 < 1000){
+      soma += item*0.4
     }else{
       soma += 1000
     }
-  }
+  })
   return soma
 }
 
