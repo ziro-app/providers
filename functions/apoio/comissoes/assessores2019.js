@@ -1,15 +1,15 @@
 // Função de apoio para o array dado
-const limite = arrayReceitas => {
-  let soma;
-  arrayReceitas.map(receita => {
-    if (receita * 0.4 < 1000) {
-      soma += receita * 0.4;
-    } else {
-      soma += limite;
+let soma = 0
+const limite = (array) =>{
+  for(numb of array){
+    if(numb*0.4 <= 1000){
+      soma += (numb * 0.4)
+    }else{
+      soma += 1000
     }
-    return soma;
-  });
-};
+  }
+  return soma
+}
 
 // Função assessores no ano de 2019
 
