@@ -1,5 +1,6 @@
 const test = require("ava");
 const assessor2020 = require("./functions/apoio/comissoes/asessores2020");
+const assessores2019 = require("./functions/apoio/comissoes/assessores2019")
 
 const dados = {
   receita_mes_ziro: 150000,
@@ -18,19 +19,13 @@ test("Comissão Assessor 2020", t => {
   t.is(comissionCalculated, comissionExpected);
 });
 
-const dataAssessores2 =  {
-    "range": "'Apoio Comissões Assessores'!A2:E45633",
-    "majorDimension": "ROWS",
-    "values": [
-		[
-            "1",
-            "2020",
-            "Rubia",
-            "23331,22",
-            "421755,96"
-        ]
-    ]
-}
+test('Comissão Assessores 2019', async t => {
+  const value = assessores2019(dados.receitas_mes_novo_cliente,dados.receita_mes_novo_afiliado,dados.receita_mes_antigo);
+  const comissionCalculated = value;
+  const comissionExpected = 4580;
+  t.is(comissionCalculated, comissionExpected);
+});
+
 
 test('Comissão Assessor2', t => {
 	const value = assessores2(dataAssessores2)
