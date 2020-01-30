@@ -1,6 +1,15 @@
+const test = require("ava");
 
-const test = require('ava')
-const assessores2 = require('./functions/apoio/comissoes/asessores2')
+const dados = {
+  receita_mes_ziro: 150000,
+  transacionado_mes: 300000,
+  receita_mes: 24000,
+  receitas_mes_novo_cliente:[200,3000,500,1000,1500],
+  receita_mes_novo_afiliado: 15000,
+  receita_mes_antigo: 20000,
+  cobrancas_mes: 100000
+};
+
 
 const dataAssessores2 =  {
     "range": "'Apoio Comissões Assessores'!A2:E45633",
