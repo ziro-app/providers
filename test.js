@@ -3,7 +3,7 @@ const assessor2020 = require("./functions/apoio/comissoes/asessores2020");
 const assessores2019 = require("./functions/apoio/comissoes/assessores2019")
 const cobranca2019 = require("./functions/apoio/comissoes/cobranca2019")
 const lojistica2019 = require("./functions/apoio/comissoes/lojistica2019")
-// const prospeccao2019 = require("./functions/apoio/comissoes/prospeccao2020")
+const prospeccao2019 = require("./functions/apoio/comissoes/prospeccao2020")
 
 const dados = {
   receita_mes_ziro: 150000,
@@ -12,7 +12,10 @@ const dados = {
   receitas_mes_novo_cliente:[200,3000,500,1000,1500],
   receita_mes_novo_afiliado: 15000,
   receita_mes_antigo: 20000,
-  cobrancas_mes: 100000
+  cobrancas_mes: 100000,
+  transacao_mes_afiliado: 200000,
+  receita_mes_novo_afiliado: 20000,
+  receita_mes_antigo_afiliado: 30000
 };
 
 test("Comissão Assessor 2020", t => {
@@ -41,5 +44,12 @@ test('Comissão Lojistica 2019', t => {
 	const value = lojistica2019(dados.receita_mes_ziro)
 	const comissionCalculated = value
 	const comissionExpected = 750
+	t.is(comissionCalculated, comissionExpected)
+})
+
+test('Comissão Prospecção 2020', t => {
+	const value = prospeccao2019(dados.transacao_mes_afiliado, dados.receita_mes_novo_afiliado, dados.receita_mes_antigo_afiliado)
+	const comissionCalculated = value
+	const comissionExpected = 8000
 	t.is(comissionCalculated, comissionExpected)
 })
