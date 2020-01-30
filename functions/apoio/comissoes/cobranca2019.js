@@ -4,3 +4,4 @@ const cobranca2019 = cobrancas_mes => {
   };
   
   module.exports = cobranca2019;
+  

@@ -2,7 +2,6 @@ const test = require("ava");
 const assessor2020 = require("./functions/apoio/comissoes/asessores2020");
 const assessores2019 = require("./functions/apoio/comissoes/assessores2019")
 const cobranca2019 = require("./functions/apoio/comissoes/cobranca2010")
-const lojistica2019 = require("./functions/apoio/comissoes/lojistica2019")
 
 const dados = {
   receita_mes_ziro: 150000,
@@ -28,16 +27,18 @@ test('Comissão Assessores 2019', async t => {
   t.is(comissionCalculated, comissionExpected);
 });
 
-test('Comissão Cobrança 2019', async t => {
+test('Comissão Lojistica 2019', async t => {
   const value = cobranca2019(dados.cobrancas_mes);
   const comissionCalculated = value;
   const comissionExpected = 700;
   t.is(comissionCalculated, comissionExpected);
 });
 
-test('Comissão Lojistica 2019', async t => {
-  const value = lojistica2019(dados.receita_mes_ziro);
-  const comissionCalculated = value;
-  const comissionExpected = 750;
-  t.is(comissionCalculated, comissionExpected);
-});
+
+test('Comissão Assessor2', t => {
+	const value = assessores2(dataAssessores2)
+	console.log(value)
+	const comissionCalculated = value.values[0].parcela2
+	const comissionExpected = 3733.12
+	t.is(comissionCalculated, comissionExpected)
+})
