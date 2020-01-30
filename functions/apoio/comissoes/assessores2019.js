@@ -22,4 +22,6 @@ const limite = (arrayReceitas, porcentagemComissao, limite) => {
     const baseAntigo = funcaoMap(receitas_mes_cliente_antigo, 0.1);
     return baseNovo + baseNovoAfiliado + baseAntigo;
   };
+
+  module.exports = assessores2019
   
