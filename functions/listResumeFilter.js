@@ -10,16 +10,16 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
-            const resultado = await main(event.queryStringParameters.mes,event.queryStringParameters.ano)
-            try {
-                send(resultado)
-            } catch (error) {
-                send(error)
-            }
+        const resultado = await main(event.queryStringParameters.mes,event.queryStringParameters.ano)
+        try {
+            send(resultado)
+        } catch (error) {
+            send(error)
+        }
     }
     if(event.httpMethod == 'GET' && event.headers.authorization == process.env.basicAuth){
         getEmployees()
     }else{
-        send("Erro na autenticação ou no metodo HTTP!")
+        send('Erro na autenticação ou no metodo HTTP!')
     }
 }

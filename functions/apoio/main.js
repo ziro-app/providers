@@ -1,4 +1,4 @@
-const rp = require('request-promise-native');
+const rp = require('request-promise-native')
 const optionsGet = require('./optionsGetGoogle')
 const listarApelidos = require('./listarApelidos')
 const listarComissoesAssessores2 = require('./comissoes/asessores2')
@@ -8,9 +8,9 @@ const listarLojista1 = require('./comissoes/lojista1')
 require('dotenv').config()
 
 const main = async (mes, ano) => {
-    const dataBaseAssessores = await rp(optionsGet("'Apoio Comissões Assessores'!A:E"))
-    const dataBaseResto = await rp(optionsGet("'Apoio Comissões'!A:E"))
-    const dataBaseFuncionarios = await rp(optionsGet("'Base Funcionários'!A:V"))
+    const dataBaseAssessores = await rp(optionsGet('\'Apoio Comissões Assessores\'!A:E'))
+    const dataBaseResto = await rp(optionsGet('\'Apoio Comissões\'!A:E'))
+    const dataBaseFuncionarios = await rp(optionsGet('\'Base Funcionários\'!A:V'))
     const listaBaseFuncionarios = listarApelidos(dataBaseFuncionarios,mes,ano)
     const comissoesAssessores2 = listarComissoesAssessores2(listaBaseFuncionarios,dataBaseAssessores,mes,ano)
     const comissoesProspeccao1 = listarComissoesProspeccao(comissoesAssessores2,dataBaseResto,mes,ano)

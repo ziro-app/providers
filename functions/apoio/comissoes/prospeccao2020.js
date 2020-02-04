@@ -4,12 +4,12 @@ const prospeccao2020 = (
     transacao_mes_afiliado,
     receita_mes_novo_afiliado,
     receita_mes_antigo_afiliado
-  ) => {
+) => {
     if (transacao_mes_afiliado >= 100000)
-      return (
-        receita_mes_novo_afiliado * 0.2 + receita_mes_antigo_afiliado * 0.1 + 1000
-      );
-    return receita_mes_novo_afiliado * 0.2 + receita_mes_antigo_afiliado * 0.1;
-  };
+        return (
+            receita_mes_novo_afiliado * 0.2 + receita_mes_antigo_afiliado * 0.1 + 1000
+        )
+    return receita_mes_novo_afiliado * 0.2 + receita_mes_antigo_afiliado * 0.1
+}
   
-  module.exports = prospeccao2020;
+module.exports = prospeccao2020
