@@ -13,7 +13,7 @@ const limite = (array) =>{
 
 // Função assessores no ano de 2019
 
-const assessor2019 = (
+const assessoria2019 = (
   receitas_mes_novo_cliente,
   receita_mes_novo_afiliado,
   receita_mes_antigo
@@ -24,4 +24,4 @@ const assessor2019 = (
   return parte1 + parte2 + parte3;
 };
 
-module.exports = assessor2019;
+module.exports = assessoria2019

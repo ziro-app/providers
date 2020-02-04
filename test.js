@@ -1,6 +1,6 @@
 const test = require("ava");
-const assessor2020 = require("./functions/apoio/comissoes/asessores2020");
-const assessores2019 = require("./functions/apoio/comissoes/assessores2019")
+const assessoria2020 = require("./functions/apoio/comissoes/assessoria2020");
+const assessoria2019 = require("./functions/apoio/comissoes/assessoria2019")
 const cobranca2019 = require("./functions/apoio/comissoes/cobranca2019")
 const lojistica2019 = require("./functions/apoio/comissoes/lojistica2019")
 const prospeccao2019 = require("./functions/apoio/comissoes/prospeccao2020")
@@ -16,15 +16,15 @@ const dados = {
   transacao_mes_afiliado: 200000
 };
 
-test("Comissão Assessor 2020", t => {
-  const value = assessor2020(dados.transacionado_mes, dados.receita_mes);
+test("Comissão Assessoria 2020", t => {
+  const value = assessoria2020(dados.transacionado_mes, dados.receita_mes);
   const comissionCalculated = value;
   const comissionExpected = 3600;
   t.is(comissionCalculated, comissionExpected);
 });
 
-test('Comissão Assessores 2019', async t => {
-  const value = assessores2019(dados.receitas_mes_novo_cliente,dados.receita_mes_novo_afiliado,dados.receita_mes_antigo_afiliado);
+test('Comissão Assessoria 2019', async t => {
+  const value = assessoria2019(dados.receitas_mes_novo_cliente,dados.receita_mes_novo_afiliado,dados.receita_mes_antigo_afiliado);
   const comissionCalculated = value;
   console.log(value)
   const comissionExpected = 7580;
