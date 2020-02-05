@@ -18,16 +18,17 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
   else return Math.round(base*100)/100
   };
 
-// const assessor2 = (data) => {
-//     let resultado = []
-//     for(comissoes2020 of data.values){
-//         if(comissoes2020[1] >= 2020){
-//             resultado.push({"ano": comissoes2020[1],"mes": comissoes2020[0],"apelido": comissoes2020[2],"parcela2":assessor2020(transNumero(comissoes2020[4]), transNumero(comissoes2020[3]))})
-//         }
-//     }
+const assessor2020 = (baseComissoes) => {
+  let resultado = []
+  for(baseComissao of baseComissoes.values){
+      if(baseComissao[1] >= 2020){
+        let comissao = calculoAssessor2020(transNumb(baseComissao[4]), transNumb(baseComissao[3]))
+          resultado.push({"ano": baseComissao[1],"mes": baseComissao[0],"apelido": baseComissao[2],"parcela2":comissao})
+          }
+      }
 
-//     return {"values": resultado}
-// }
+  return {"values": resultado}
+}
 
 
 
