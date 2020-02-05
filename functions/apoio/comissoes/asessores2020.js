@@ -5,7 +5,9 @@
 //300000	1200
 //400000	1400
 
-const assessor2020 = (transacionado_mes, receita_mes) => {
+const transNumb = (numero) => {
+  return Number(numero.replace(",","."))
+      }
     const base = receita_mes * 0.1;
     if (transacionado_mes >= 400000) return base + 1400
     if (transacionado_mes >= 300000)  return base + 1200
