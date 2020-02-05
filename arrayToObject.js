@@ -6,16 +6,22 @@
 // // Teste Condicionais
 // const conditional = {
 //   valueIsObject = typeof sheet.values == 'object'),
-//   justOneArrayLength = sheet.values.length === 1,
 //   moreThenTwoArrayLength = sheet.values.length >= 2,
 //   columnHeaderEqualrow = header.length === data[0].length
 // }
 
-const dataSheets = {values:[['nome','sobrenome','idade'],["Ahmad","Forhat",24]]}
+// Fazer função if que transforma em numero --> brasilianDecimalToNumberEua
+
+const strBrasilianToEuaNumber = numb => {
+  if (!isNaN(Number(numb.toString().replace(",", "."))))
+    return Math.round(Number(numb.toString().replace(",", ".")) * 100) / 100;
+  return numb;
+};
 
 const arrayToObject = (sheet) => {
-  // Try Catch da função
-  try {
+    let respostaMenorQueDois = "A função não pode ser executada sem pelo menos apresenta um cabeçalho e um corpo"
+    let respostaTypeOf = "Values do objeto não foi encontrado"
+    let resBodyEqualHeader = "O número de colunas do cabeçalho tem que ser igual ao número de colunas do corpo"
     if(typeof sheet.values == 'object'){
         if(sheet.values.length >= 2){
           const { values } = sheet;
@@ -24,23 +30,21 @@ const arrayToObject = (sheet) => {
             const object = data.map(row => {
               return Object.fromEntries(
                 row.map((column, index) => {
-                  return [header[index], row[index]];
+                  let numbOrString = strBrasilianToEuaNumber(row[index])
+                  return [header[index], numbOrString];
                 })
               )
             })
             return object
           }else{
-            throw "O número de colunas do cabeçalho tem que ser igual ao número de colunas do corpo"
+            throw resBodyEqualHeader
           }
         }else{
-          throw "A função não pode ser executada quando apresenta somente o cabeçalho"
+          throw respostaMenorQueDois
         }
     }else{
-      throw "Values do objeto não foi encontrado"
+      throw respostaTypeOf
     }
-  } catch (error) {
-    return error
-  }
 }
 
 console.log(arrayToObject(dataSheets))
