@@ -3,30 +3,40 @@
 // if values.length >= 2
 // if is not null
 
-const dataSheets = {values:[['nome','sobrenome','idade'],['Ahmad', 'Forhat', 24],['João', 'Berinjela',70]]}
+// // Teste Condicionais
+// const conditional = {
+//   valueIsObject = typeof sheet.values == 'object'),
+//   justOneArrayLength = sheet.values.length === 1,
+//   moreThenTwoArrayLength = sheet.values.length >= 2,
+//   columnHeaderEqualrow = header.length === data[0].length
+// }
+
+const dataSheets = {values:[['nome','sobrenome','idade'],["Ahmad","Forhat",24]]}
+
 const arrayToObject = (sheet) => {
+  // Try Catch da função
   try {
     if(typeof sheet.values == 'object'){
-      if(sheet.values.length >= 2){
-        const { values } = sheet;
-        const [header, ...data] = values;
-        if( header.length === data[0].length){
-          const object = data.map(row => {
-            return Object.fromEntries(
-              row.map((column, index) => {
-                return [header[index], row[index]];
-              })
-            )
-          })
-          return object
+        if(sheet.values.length >= 2){
+          const { values } = sheet;
+          const [header, ...data] = values;
+          if(header.length === data[0].length){
+            const object = data.map(row => {
+              return Object.fromEntries(
+                row.map((column, index) => {
+                  return [header[index], row[index]];
+                })
+              )
+            })
+            return object
+          }else{
+            throw "O número de colunas do cabeçalho tem que ser igual ao número de colunas do corpo"
+          }
         }else{
-          throw "O número de colunas do cabeçalho tem que ser igual ao número de colunas do corpo"
+          throw "A função não pode ser executada quando apresenta somente o cabeçalho"
         }
-      }else{
-        throw "Não pode executar a função apenas com o cabeçalho"
-      }
     }else{
-      throw "Erro ao procurar values no objeto passado"
+      throw "Values do objeto não foi encontrado"
     }
   } catch (error) {
     return error
