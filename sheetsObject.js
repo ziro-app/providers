@@ -18,13 +18,17 @@ const stringJson = (data) => {
     return textJson
 }
 
-const sheetsJson = (data) => {
+const sheetsJson = async (data) => {
     let resultFinal = []
     const objectoJSON = stringJson(data).split('#')
     for(let n = 1; n < (objectoJSON.length) -1; n++){
         resultFinal.push(JSON.parse(objectoJSON[n]))
     }
-    return resultFinal
+    try {
+        return resultFinal
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = sheetsJson
