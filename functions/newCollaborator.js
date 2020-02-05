@@ -1,5 +1,5 @@
 const rp = require('request-promise-native');
-const optionsPost = require('./apoio/optionsPostGoogle')
+const optionsPost = require('./apoio/googlesheets/optionsPostGoogle')
 require('dotenv').config()
 
 exports.handler = function(event, context, callback){
