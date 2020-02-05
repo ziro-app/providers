@@ -4,7 +4,7 @@ const assessores2019 = require('./functions/apoio/comissoes/assessores2019')
 const cobranca2019 = require('./functions/apoio/comissoes/cobranca2019')
 const lojistica2019 = require('./functions/apoio/comissoes/lojistica2019')
 const prospeccao2019 = require('./functions/apoio/comissoes/prospeccao2020')
-const sheetsObject = require('./sheetsObject')
+const arrayToObject = require('./arrayToObject')
 
 const dados = {
     receita_mes_ziro: 150000,
@@ -56,8 +56,8 @@ test('Comissão Prospecção 2020', t => {
 
 const dataSheets = {values:[['nome','sobrenome','idade'],['Ahmad', 'Forhat', 24],['João', 'Berinjela',70]]}
 
-test('sheetsToObject', t => {
-    const value = sheetsObject(dataSheets)
+test('arrayToObject', t => {
+    const value = arrayToObject(dataSheets)
     const arrayObjectCalculated = value
     const arrayObjectExpected = [{nome: 'Ahmad', sobrenome : 'Forhat', idade: 24 }, {nome: 'João', sobrenome : 'Berinjela', idade: 70}]
     t.is(arrayObjectCalculated, arrayObjectExpected)
