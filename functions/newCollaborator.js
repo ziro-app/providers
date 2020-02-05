@@ -1,4 +1,4 @@
-const rp = require('request-promise-native');
+const rp = require('request-promise-native')
 const optionsPost = require('./apoio/googlesheets/optionsPostGoogle')
 require('dotenv').config()
 
@@ -28,26 +28,26 @@ exports.handler = function(event, context, callback){
             reqBodyJson.DataExp,
             reqBodyJson.EstadoCivil,
             reqBodyJson.Endereco,
-            " ",
+            ' ',
             `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDay()}`,
-            "-",
+            '-',
             reqBodyJson.InformacoesAdicionais,
         ]]
         const optionsGoogle = await optionsPost(body)
+        try {
+            const resultado = await rp(optionsGoogle)
             try {
-                const resultado = await rp(optionsGoogle)
-                try {
-                    if(event.headers.authorization == process.env.basicAuth){
-                        send(resultado)
-                    }else{
-                        send("Sem autorização para essa aplicação")
-                    }
-                } catch(error) {
-                    send(error)
+                if(event.headers.authorization == process.env.basicAuth){
+                    send(resultado)
+                }else{
+                    send('Sem autorização para essa aplicação')
                 }
-            } catch (error) {
+            } catch(error) {
                 send(error)
             }
+        } catch (error) {
+            send(error)
+        }
     }
     if(event.httpMethod == 'POST'){
         getEmployees()

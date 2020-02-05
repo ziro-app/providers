@@ -1,9 +1,9 @@
 const rp = require('request-promise-native');
 const optionsGet = require('./googlesheets/optionsGetGoogle')
-const listarApelidos = require('./listarApelidos')
-const listarComissoesAssessores2020 = require('./comissoes/asessores2020')
-const listarComissoesAssessores2019 = require('./comissoes/assessores2019')
-const listarComissoesLojistica2019 = require('./comissoes/lojistica2019')
+// const listarApelidos = require('./listarApelidos')
+// const listarComissoesAssessores2020 = require('./comissoes/asessores2020')
+// const listarComissoesAssessores2019 = require('./comissoes/assessores2019')
+// const listarComissoesLojistica2019 = require('./comissoes/lojistica2019')
 const listarComissoesProspeccao2020 = require('./comissoes/prospeccao2020')
 
 const main = async (mes, ano) => {
