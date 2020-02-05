@@ -1,23 +1,28 @@
 const rp = require('request-promise-native');
-const optionsGet = require('./optionsGetGoogle')
+const optionsGet = require('./googlesheets/optionsGetGoogle')
 const listarApelidos = require('./listarApelidos')
-const listarComissoesAssessores2 = require('./comissoes/asessores2')
-const listarComissoesProspeccao = require('./comissoes/prospeccao1')
-const listarCobranca1 = require('./comissoes/cobranca1')
-const listarLojista1 = require('./comissoes/lojista1')
-require('dotenv').config()
+const listarComissoesAssessores2020 = require('./comissoes/asessores2020')
+const listarComissoesAssessores2019 = require('./comissoes/assessores2019')
+const listarComissoesLojistica2019 = require('./comissoes/lojistica2019')
+const listarComissoesProspeccao2020 = require('./comissoes/prospeccao2020')
 
 const main = async (mes, ano) => {
-    const dataBaseAssessores = await rp(optionsGet("'Apoio Comissões Assessores'!A:E"))
-    const dataBaseResto = await rp(optionsGet("'Apoio Comissões'!A:E"))
-    const dataBaseFuncionarios = await rp(optionsGet("'Base Funcionários'!A:V"))
-    const listaBaseFuncionarios = listarApelidos(dataBaseFuncionarios,mes,ano)
-    const comissoesAssessores2 = listarComissoesAssessores2(listaBaseFuncionarios,dataBaseAssessores,mes,ano)
-    const comissoesProspeccao1 = listarComissoesProspeccao(comissoesAssessores2,dataBaseResto,mes,ano)
-    const comissaoCobranca1 = listarCobranca1(comissoesProspeccao1,dataBaseResto,mes,ano)
-    const comissaoLojista1 = listarLojista1(comissaoCobranca1,dataBaseResto,mes,ano)
+    // GoogleSheets GET
+    // const dataBaseAssessores = await rp(optionsGet("'Apoio Comissões Assessores'!A2:E"))
+    // const dataBaseFuncionarios = await rp(optionsGet("'Base Funcionários'!A2:V"))
+    // const dataBaseAssessores2019 = await rp(optionsGet("'Apoio Comissão Assessor 2019'!I2:M"))
+    // const dataBaseAssessores2019Novo = await rp(optionsGet("'Query Assessores2019'!A2:F"))
+    // const dataBaseLojistica2019 = await rp(optionsGet("'Apoio Comissões Lojista 2019'!A2:C"))
+    const dataBaseTransacoesProspeccao2020 = await rp(optionsGet("'Apoio transacoes Prospecção 2020'!A2:D"))
+    const dataBaseApoioProspeccao2020 = await rp(optionsGet("'Apoio Prospecção 2020'!A2:F"))
+    // Funções de calculo de comissões
+    // const listaBaseFuncionarios = listarApelidos(dataBaseFuncionarios,mes,ano)
+    // const comissoesAssessores2020 = listarComissoesAssessores2020(dataBaseAssessores)
+    // const comissoesAssessores2019 = listarComissoesAssessores2019(dataBaseAssessores2019, dataBaseAssessores2019Novo)
+    // const comissoesLojistica2019 = listarComissoesLojistica2019(dataBaseLojistica2019)
+    const comissoesProspeccao2020 = listarComissoesProspeccao2020(dataBaseTransacoesProspeccao2020,dataBaseApoioProspeccao2020)
     try {
-        return comissaoLojista1
+        return comissoesProspeccao2020
     } catch (error) {
         return error
     }
