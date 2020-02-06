@@ -1,29 +1,24 @@
 const decimalUsa = require('@ziro/decimal-usa')
 
-const arrayToObject = ({values}) => {
-    // Trocando o nome das variaveis e condicionais
-    let respostaMenorQueDois = "A função não pode ser executada sem pelo menos apresenta um cabeçalho e um corpo"
-    let respostaTypeOf = "Values do objeto não foi encontrado ou sua resposta não é um objeto"
-    let resBodyEqualHeader = "O número de colunas do cabeçalho tem que ser igual ao número de colunas do corpo"
-    let tipoObjeto = typeof values == 'object'
-    let temCabecalhoCorpo = values.length >= 2
-    // Começo das condicionais e codigo
-    if(!tipoObjeto) throw respostaTypeOf
-    if(!temCabecalhoCorpo) throw respostaMenorQueDois
-    const [header, ...data] = values;
-    let columnEqualHeaderBody = header.length === data[0].length
-    if(!columnEqualHeaderBody) throw resBodyEqualHeader
-      const object = data.map(row => {
-      return Object.fromEntries(
-        row.map((column, index) => {
-          let numbOrString = decimalUsa(row[index])
-          if(isNaN(numbOrString)) return [header[index], row[index]]
-          return [header[index], numbOrString];
-        })
-      )
-    })
-      return object
-
+const arrayToObject = ({ values }) => {
+  // Mensagens de erro
+  const erro1 = "values deve ser um objeto"
+  const erro2 = "values deve ter um cabeçalho e um corpo"
+  const erro3 = "qtde colunas do cabeçalho deve ser igual a qtde colunas do corpo"
+  // Condicionais e codigo
+  if (typeof values !== 'object') throw erro1
+  if (values.length < 2) throw erro2
+  const [header, ...data] = values
+  if (header.length !== data[0].length) throw erro3
+  return data.map(row => {
+    return Object.fromEntries(
+      row.map((column, index) => {
+        const number = decimalUsa(row[index])
+        if(isNaN(number)) return [header[index], row[index]]
+        return [header[index], number]
+      })
+    )
+  })
 }
 
 module.exports = arrayToObject
