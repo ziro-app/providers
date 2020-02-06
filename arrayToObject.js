@@ -1,10 +1,6 @@
-const strBrasilianToEuaNumber = numb => {
-  if (!isNaN(Number(numb.toString().replace(",", "."))))
-    return Math.round(Number(numb.toString().replace(",", ".")) * 100) / 100;
-  return numb;
-};
+const decimalUsa = require('decimalUsa')
 
-const arrayToObject = ({values}) => {
+const arraySheetsToObject = ({values}) => {
     // Trocando o nome das variaveis e condicionais
     let respostaMenorQueDois = "A função não pode ser executada sem pelo menos apresenta um cabeçalho e um corpo"
     let respostaTypeOf = "Values do objeto não foi encontrado ou sua resposta não é um objeto"
@@ -20,7 +16,8 @@ const arrayToObject = ({values}) => {
             const object = data.map(row => {
               return Object.fromEntries(
                 row.map((column, index) => {
-                  let numbOrString = strBrasilianToEuaNumber(row[index])
+                  let numbOrString = decimalUsa(row[index])
+                  if(isNaN(numbOrString)) return [header[index], row[index]]
                   return [header[index], numbOrString];
                 })
               )
@@ -37,4 +34,4 @@ const arrayToObject = ({values}) => {
     }
 }
 
-module.exports = arrayToObject
+module.exports = arraySheetsToObject
