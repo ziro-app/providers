@@ -54,7 +54,7 @@ test('Comissão Prospecção 2020', t => {
     t.is(comissionCalculated, comissionExpected)
 })
 
-const dataSheets = {values:[['nome','sobrenome','idade'],['Ahmad', 'Forhat', 24],['João', 'Berinjela',70]]}
+const dataSheets = {values:[['nome','sobrenome','idade'],['Ahmad', 'Forhat', '24'],['João', 'Berinjela','70']]}
 
 test('arrayToObject', t => {
     const value = arrayToObject(dataSheets)
