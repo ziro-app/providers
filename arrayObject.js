@@ -1,6 +1,6 @@
 const decimalUsa = require('@ziro/decimal-usa')
 
-const arrayToObject = ({ values }) => {
+const arrayObject = ({ values }) => {
   // Mensagens de erro
   const erro1 = "values deve ser um objeto"
   const erro2 = "values deve ter um cabeçalho e um corpo"
@@ -21,4 +21,4 @@ const arrayToObject = ({ values }) => {
   })
 }
 
-module.exports = arrayToObject
+module.exports = arrayObject

@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@ziro/array-object": "^1.0.0",
     "@ziro/decimal-usa": "^1.0.1",
     "dotenv": "^8.2.0",
     "netlify-lambda": "^1.6.3",
