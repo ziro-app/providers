@@ -1,6 +1,6 @@
 // Prospecção
 // Função atual recebe 1000 se tiver mais de 100000 de transação começou 01/2020
-const prospeccao2020 = (
+const vendas2020 = (
     transacao_mes_afiliado,
     receita_mes_novo_afiliado,
     receita_mes_antigo_afiliado
@@ -12,4 +12,4 @@ const prospeccao2020 = (
     return receita_mes_novo_afiliado * 0.2 + receita_mes_antigo_afiliado * 0.1
 }
   
-module.exports = prospeccao2020
+module.exports = vendas2020
