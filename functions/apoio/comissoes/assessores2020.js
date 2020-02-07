@@ -5,6 +5,7 @@
 //300000	1200
 //400000	1400
 
+// Calculo com da comissão
 const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     const base = receita_mes * 0.1
     if (transacionado_mes >= 400000) return base + 1400
@@ -14,6 +15,7 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     else return base
 }
 
+// Agrupamento dos valores necessários para o calculo
 const reduceBaseBoletos = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item => {
         const condicao =
@@ -32,10 +34,11 @@ const reduceBaseBoletos = (baseComissoes, ano, mes, assessor) => {
     return somas
 }
   
-
+// Função "main"
 const assessor2020 = (baseComissoes, ano, mes, assessor) => {
-    const receita_mes = reduceBaseBoletos(baseComissoes, ano, mes, assessor).receitas
-    const transacionado_mes = reduceBaseBoletos(baseComissoes, ano, mes, assessor).transacoes
+    const somatoria = reduceBaseBoletos(baseComissoes, ano, mes,assessor)
+    const receita_mes = somatoria.receitas
+    const transacionado_mes = somatoria.transacoes
     return calculoAssessor2020(receita_mes, transacionado_mes)
 }
 
