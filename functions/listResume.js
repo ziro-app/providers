@@ -10,7 +10,10 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
-        const resultado = await main(event.queryStringParameters.mes,event.queryStringParameters.ano)
+        const ano = event.queryStringParameters.ano
+        const mes = event.queryStringParameters.mes
+        const assessor = event.queryStringParameters.assessor
+        const resultado = await main(ano,mes,assessor)
         try {
             send(resultado)
         } catch (error) {
