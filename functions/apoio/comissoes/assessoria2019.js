@@ -1,7 +1,7 @@
 // Função de apoio para o array dado
 let soma = 0
-const limite = (array) =>{
-    let loop = array.map((item) => {
+const limite = (array) => {
+    array.map((item) => {
         if(item*0.4 < 1000){
             soma += item*0.4
         }else{
