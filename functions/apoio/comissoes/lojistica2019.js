@@ -1,21 +1,26 @@
-const transNumb = (numero) => {
-    return Number(numero.replace(',','.'))
-}
 //Lojistica - começou a ter comissão 09/2019
 const calculoLojistica2019 = receita_mes_ziro => {
     return receita_mes_ziro * 0.005
 }
 
-// Montando objeto de Retorno
-let result = []
-const lojistica2019 = (base) => {
-    for(let dado of base.values){
-        if(dado[1] == 2019 && dado[0] >= 9 || dado [1] >= 2020){
-            let comissao = calculoLojistica2019(transNumb(dado[2]))
-            result.push({'ano': dado[1], 'mes': dado[0],'comissao':comissao})
-        }
-    }
-    return result
+// Agrupamento dos valores necessários para o calculo
+const reduceBaseBoletos = (baseComissoes, ano, mes) => {
+    const filtrado = baseComissoes.filter(item => {
+        const condicao =
+        item.ano === ano && item.mes === mes
+        return condicao
+    })
+    const receitas = filtrado.map(item => item.receita)
+    const somaReceitas = receitas.reduce(
+        (anterior, proximo) => anterior + proximo
+    )
+    return somaReceitas
 }
   
+// Função "main"
+const lojistica2019 = (baseComissoes, ano, mes) => {
+    const receita_mes_ziro = reduceBaseBoletos(baseComissoes, ano, mes)
+    return calculoLojistica2019(receita_mes_ziro)
+}
+
 module.exports = lojistica2019
