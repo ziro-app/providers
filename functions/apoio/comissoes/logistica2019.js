@@ -1,8 +1,5 @@
-//Lojistica - começou a ter comissão 09/2019
-const calculoLogistica2019 = receita_mes_ziro => receita_mes_ziro * 0.005
-
-// Agrupamento dos valores necessários para o calculo
-const reduceBaseBoletos = (baseComissoes, ano, mes) => {
+//Logistica - começou a ter comissão 09/2019
+const receitas = (baseComissoes, ano, mes) => {
     const filtrado = baseComissoes.filter(item =>
         item.ano === ano && item.mes === mes
     )
@@ -12,11 +9,13 @@ const reduceBaseBoletos = (baseComissoes, ano, mes) => {
     )
     return somaReceitas
 }
+
+const comissaoLogistica = receita_mes_ziro => receita_mes_ziro * 0.005
   
 // Função "main"
 const logistica2019 = (baseComissoes, ano, mes) => {
-    const receita_mes_ziro = reduceBaseBoletos(baseComissoes, ano, mes)
-    return calculoLogistica2019(receita_mes_ziro)
+    const receita_mes_ziro = receitas(baseComissoes, ano, mes)
+    return comissaoLogistica(receita_mes_ziro)
 }
 
 module.exports = logistica2019
