@@ -1,45 +1,32 @@
-// Conversão para número da base de dados
-const transNumb = (numero) => {
-    return Number(numero.replace(',','.'))
+const receitasNovoAfiliado = (baseComissoes, ano, mes, assessor) => {
+    const filtrado = baseComissoes.filter(item =>
+        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipocliente === 'Novo' && item.afiliado !== "NENHUM"
+    )
+    const receitas = filtrado.map(item => item.receita)
+    const somaReceitas = receitas.reduce(
+        (anterior, proximo) => anterior + proximo
+    )
+    return somaReceitas
 }
 
-// Lista de receita de clientes antigos_mes_ano_assessor e receita clientes afiliados  novos_mes_ano_assessor
-// Formato desejado : {"ano":ano,"mes":mes,"assessor":assessor,"receita_antigo":receita_antigo,"receita_novo_afil":receita_novo_afil}
-let list_antigos = []
-let list_novos_afil = []
-let result_novos_antigos = []
-const apoioBaseDadosAssessores = (baseAntigosNovos)=> {
-    for(let dado of baseAntigosNovos.values){
-        if(dado[3] == 'Antigo'){
-            list_antigos.push({'ano': dado[0], 'mes': dado[1], 'assessor': dado[2], 'receita_antigo': transNumb(dado[4]), 'receita_novo_afil': 0, 'receita_novo':[0]})
-        }else{
-            list_novos_afil.push({'ano': dado[0], 'mes': dado[1], 'assessor': dado[2], 'receita_novo_afil': transNumb(dado[4])})
-        }
-    }
-    for(let antigo of list_antigos){
-        for(let novo_afil of list_novos_afil){
-            if(antigo.ano == novo_afil.ano && antigo.mes == novo_afil.mes && antigo.assessor == novo_afil.assessor){
-                antigo.receita_novo_afil = novo_afil.receita_novo_afil
-            }
-        }
-        result_novos_antigos.push(antigo)
-    }
-    return result_novos_antigos
+const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
+    const filtrado = baseComissoes.filter(item =>
+        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipocliente === 'Antigo'
+    )
+    const receitas = filtrado.map(item => item.receita)
+    const somaReceitas = receitas.reduce(
+        (anterior, proximo) => anterior + proximo
+    )
+    return somaReceitas
 }
 
-// Formar base final, local onde vai se ter os parametros passados na função
-let baseFinal = []
-const constructBase = (apoioAssessores, lista_receita_novos) => {
-    const baseDadosAssessores = apoioBaseDadosAssessores(apoioAssessores)
-    for(let base of baseDadosAssessores){
-        for(let item of lista_receita_novos.values){
-            if(base.ano == item[0] && base.mes == item[1] && base.assessor == item[2] && item[3] == 'Novo' && item[4] =='Não'){
-                base.receita_novo.push(transNumb(item[5]))
-            }
-        }
-        baseFinal.push(base)
-    }
-    return baseFinal
+let arrayNovos = []
+const receitasNovo = (baseComissoes, ano, mes, assessor) => {
+    const filtrado = baseComissoes.filter(item =>
+        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipocliente === 'Novo' && item.afiliado === "NENHUM"
+    )
+    filtrado.map(item => arrayNovos.push(item.receita))
+    return arrayNovos
 }
 
 // Função de apoio para o array dado
@@ -68,16 +55,11 @@ const calculoAssessor2019 = (
     return parte1 + parte2 + parte3
 }
 
-let resultadoCalculo = []
-const assessor2019 = (apoioAssessores, lista_receita_novos) => {
-    const baseCalculo = constructBase(apoioAssessores, lista_receita_novos)
-    for(let base of baseCalculo){
-        if(base.ano >= 2019 && base.ano < 2020){
-            let comissao = calculoAssessor2019(base.receita_novo, base.receita_novo_afil, base.receita_antigo)
-            resultadoCalculo.push({'ano':base.ano, 'mes':base.mes, 'assessor':base.assessor, 'comissao': comissao})
-        }
-    }
-    return resultadoCalculo
+const assessor2019 = (baseComissoes, ano, mes, assessor) => {
+    const receitas_mes_novo_cliente = receitasNovo(baseComissoes, ano, mes, assessor)
+    const receita_mes_novo_afiliado = receitasNovoAfiliado(baseComissoes, ano, mes, assessor)
+    const receita_mes_antigo = receitasAntigo(baseComissoes, ano, mes, assessor)
+    return calculoAssessor2019(receitas_mes_novo_cliente,receita_mes_novo_afiliado,receita_mes_antigo)
 }
 
 module.exports = assessor2019

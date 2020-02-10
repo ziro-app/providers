@@ -3,7 +3,7 @@ const calculoCobranca2019 = cobrancas_mes => {
     return cobrancas_mes * 0.007
 }
 
-const reduceBaseBoletos = (baseComissoes, ano, mes) => {
+const recebimento = (baseComissoes, ano, mes) => {
     const filtrado = baseComissoes.filter(item =>
         item.anoRecebido === ano && item.mesRecebido === mes
     )
@@ -16,7 +16,7 @@ const reduceBaseBoletos = (baseComissoes, ano, mes) => {
   
 // Função "main"
 const cobranca2019 = (baseComissoes, ano, mes) => {
-    const receita_mes_ziro = reduceBaseBoletos(baseComissoes, ano, mes)
+    const receita_mes_ziro = recebimento(baseComissoes, ano, mes)
     return calculoCobranca2019(receita_mes_ziro)
 }
 
