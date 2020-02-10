@@ -5,43 +5,31 @@ const assessor2020 = require('./assessores2020')
 const logistica2019 = require('./logistica2019')
 const cobranca2019 = require('./cobranca2019')
 const vendas2020 = require('./vendas2020')
-
 require('dotenv').config()
 
-const testeAssessor2020 = async (baseComissoes) => {
-    const calculate = assessor2020(baseComissoes, 2020, 1, 'Rubia')
-    const expected = 53586.56099999998
-    console.log('Teste Assessor 2020')
-    console.log('Calculado:', calculate, 'Esperado:', expected)
-    if(calculate === expected) console.log('Resultado do teste:', 'PASSOU!!!')
+const testeSheets = (expected, calculate, titulo) => {
+    const calculado = calculate
+    const esperado = expected
+    console.log(titulo)
+    console.log('Calculado', calculado, 'Esperado', esperado)
+    if(calculado === esperado) console.log('Resultado do teste:', 'PASSOU!!!')
     else console.log('Resultado do teste:', 'NÃO PASSOU')
 }
 
-const testLogistica2019 = async (baseComissoes) => {
-    const calculate = logistica2019(baseComissoes, 2020, 1)
-    const expected = 243.10709999999992
-    console.log('Teste Logistica 2019')
-    console.log('Calculado:', calculate, 'Esperado:', expected)
-    if(calculate === expected) console.log('Resultado do teste:', 'PASSOU!!!')
-    else console.log('Resultado do teste:', 'NÃO PASSOU')
+const testeAssessor2020 = (baseComissoes) => {
+    testeSheets(53586.56099999998, assessor2020(baseComissoes, 2020, 1, 'Rubia'), 'Teste Assessor 2020')
 }
 
-const testeCobrancas2019 = async (baseComissoes) => {
-    const calculate = cobranca2019(baseComissoes, 2020, 1)
-    const expected = 277.4078999999999
-    console.log('Teste Cobranças 2019')
-    console.log('Calculado:', calculate, 'Esperado:', expected)
-    if(calculate === expected) console.log('Resultado do teste:', 'PASSOU!!!')
-    else console.log('Resultado do teste:', 'NÃO PASSOU')
+const testLogistica2019 = (baseComissoes) => {
+    testeSheets(243.10709999999992, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica 2019')
 }
 
-const testeVendas2020 = async (baseComissoes) => {
-    const calculate = vendas2020(baseComissoes, 2020, 1, 'FRANÇA')
-    const expected = 1708.635
-    console.log('Teste Cobranças 2019')
-    console.log('Calculado:', calculate, 'Esperado:', expected)
-    if(calculate === expected) console.log('Resultado do teste:', 'PASSOU!!!')
-    else console.log('Resultado do teste:', 'NÃO PASSOU')
+const testeCobrancas2019 = (baseComissoes) => {
+    testeSheets(277.4078999999999, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças 2019')
+}
+
+const testeVendas2020 = (baseComissoes) => {
+    testeSheets(1708.635, vendas2020(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas 2020')
 }
 
 const teste = async () => {
