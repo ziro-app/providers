@@ -28,12 +28,12 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
     const somaReceitas = receitas.reduce(
         (anterior, proximo) => anterior + proximo
     )
-    return { transacoes: somaTransacoes, receitas: somaReceitas }
+    return { transacionado_mes: somaTransacoes, receita_mes: somaReceitas }
 }
   
 // Função "main"
 const assessor2020 = (baseComissoes, ano, mes, assessor) => {
-    const { receita_mes, transacionado_mes } = transacoes_e_receitas(baseComissoes, ano, mes, assessor)
+    const { transacionado_mes, receita_mes } = transacoes_e_receitas(baseComissoes, ano, mes, assessor)
     return calculoAssessor2020(receita_mes, transacionado_mes)
 }
 
