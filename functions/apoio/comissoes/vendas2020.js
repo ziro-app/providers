@@ -25,15 +25,15 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, afiliado, tipoCliente) =
     const somaReceitas = receitas.reduce(
         (anterior, proximo) => anterior + proximo
     )
-    return { transacoes: somaTransacoes, receitas: somaReceitas }
+    return { transacao_mes_afiliado_novo: somaTransacoes, receita_mes_novo_afiliado: somaReceitas }
 }
   
 // Função "main"
-const prospeccao2020 = (baseComissoes, ano, mes, afiliado) => {
-    const { receita_mes_novo_afiliado, transacao_mes_afiliado_novo } = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Novo')
-    const { receita_mes_antigo_afiliado, transacao_mes_afiliado_antigo } = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Antigo')
+const vendas2020 = (baseComissoes, ano, mes, afiliado) => {
+    const { transacao_mes_afiliado_novo, receita_mes_novo_afiliado } = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Novo')
+    const { transacao_mes_afiliado_antigo, receita_mes_antigo_afiliado } = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Antigo')
     const transacao_mes_afiliado = transacao_mes_afiliado_novo + transacao_mes_afiliado_antigo
     return calculoProspeccao2020(transacao_mes_afiliado, receita_mes_novo_afiliado, receita_mes_antigo_afiliado)
 }
   
-module.exports = prospeccao2020
+module.exports = vendas2020
