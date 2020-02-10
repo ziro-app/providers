@@ -25,7 +25,6 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, afiliado, tipoCliente) =
     const somaReceitas = receitas.reduce(
         (anterior, proximo) => anterior + proximo
     )
-    console.log({ transacao_mes_afiliado: somaTransacoes, receita_mes_afiliado: somaReceitas })
     return { transacao_mes_afiliado: somaTransacoes, receita_mes_afiliado: somaReceitas }
 }
   
