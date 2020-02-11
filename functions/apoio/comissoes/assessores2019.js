@@ -62,4 +62,5 @@ const assessor2019 = (baseComissoes, ano, mes, assessor) => {
     return calculoAssessor2019(receitas_mes_novo_cliente,receita_mes_novo_afiliado,receita_mes_antigo)
 }
 
+
 module.exports = assessor2019
