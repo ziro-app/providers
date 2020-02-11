@@ -23,25 +23,3 @@ test('Comissão Lojistica 2019', async t => {
     const comissionExpected = 75.0072
     t.is(comissionCalculated, comissionExpected)
 })
-
-// test('Comissão Cobranças 2019', async t => {
-//     const value = cobranca2019(dados.cobrancas_mes)
-//     const comissionCalculated = value
-//     const comissionExpected = 700
-//     t.is(comissionCalculated, comissionExpected)
-// })
-
-
-// test('Comissão Lojistica 2019', t => {
-//     const value = lojistica2019(dados.receita_mes_ziro)
-//     const comissionCalculated = value
-//     const comissionExpected = 750
-//     t.is(comissionCalculated, comissionExpected)
-// })
-
-// test('Comissão Prospecção 2020', t => {
-//     const value = prospeccao2019(dados.transacao_mes_afiliado, dados.receita_mes_novo_afiliado, dados.receita_mes_antigo_afiliado)
-//     const comissionCalculated = value
-//     const comissionExpected = 6500
-//     t.is(comissionCalculated, comissionExpected)
-// })
