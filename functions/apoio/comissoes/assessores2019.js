@@ -1,6 +1,6 @@
 const receitasNovoAfiliado = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipocliente === 'Novo' && item.afiliado !== "NENHUM"
+        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Novo' && item.afiliado !== 'NENHUM'
     )
     const receitas = filtrado.map(item => item.receita)
     const somaReceitas = receitas.reduce(
@@ -11,7 +11,7 @@ const receitasNovoAfiliado = (baseComissoes, ano, mes, assessor) => {
 
 const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipocliente === 'Antigo'
+        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Antigo'
     )
     const receitas = filtrado.map(item => item.receita)
     const somaReceitas = receitas.reduce(
@@ -23,7 +23,7 @@ const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
 let arrayNovos = []
 const receitasNovo = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipocliente === 'Novo' && item.afiliado === "NENHUM"
+        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Novo' && item.afiliado === 'NENHUM'
     )
     filtrado.map(item => arrayNovos.push(item.receita))
     return arrayNovos
