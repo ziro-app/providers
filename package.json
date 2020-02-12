@@ -6,7 +6,8 @@
     "lambda-server": "netlify-lambda serve functions",
     "lambda-build": "netlify-lambda build functions",
     "test": "ava",
-    "testComissoes": "node ./functions/apoio/comissoes/testComissoes.js"
+    "testComissoes": "node ./functions/apoio/comissoes/testComissoes.js",
+    "testListarPessoas": "node ./functions/apoio/testListarPessoas.js"
   },
   "license": "MIT",
   "dependencies": {
