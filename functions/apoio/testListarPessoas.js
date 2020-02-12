@@ -15,12 +15,11 @@ const calculoUltimoDia = (ano,mes) => {
 }
 
 let result = []
-const listarApelidos = (basePessoas) => {
-    basePessoas.map(item => {
-        for(let i = 1; i<=12; i++){
-            result.push({mes:i, ano:2020, apelido: item.Apelido})
-        }
-    })
+const listarApelidos = (base, ano, mes) => {
+    const entrouNesseMes = base.filter(item => transData(item.dataInicio) > new Date(ano,mes))
+    entrouNesseMes.map(item => result.push({apelido: item.apelido, escopo:item.escopo, parcela1:item.parcela1*(calculoUltimoDia(ano,mes).getDate() - transData(item.dataInicio).getDate())/calculoUltimoDia(ano,mes).getDate()}))
+    const ativoNesseMes = base.filter(item => transData(item.dataInicio) < new Date(ano,mes) && item.dataFim === '-' || transData(item.dataInicio) < new Date(ano,mes) && transData(item.dataFim) < new Date(ano,mes))
+    ativoNesseMes.map(item => result.push({apelido:item.apelido, escopo:item.escopo, parcela1:item.parcela1}))
     return result
 }
 
@@ -28,7 +27,7 @@ const testeListarPessoas = async () => {
     try {
         const dataBasePessoas = await rp(optionsGet('Pessoas!A:V'))
         const basePessoas = await arrayObject(dataBasePessoas)
-        console.log(listarApelidos(basePessoas))
+        console.log(listarApelidos(basePessoas,2020,1))
     } catch (error) {
         console.log(error)
     }
