@@ -26,7 +26,7 @@ const testLogistica2019 = (baseComissoes) => {
 }
 
 const testeCobrancas2019 = (baseComissoes) => {
-    testeSheets(277.4078999999999, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças 2019')
+    testeSheets(277.05964999999986, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças 2019')
 }
 
 const testeVendas2020 = (baseComissoes) => {
@@ -34,7 +34,7 @@ const testeVendas2020 = (baseComissoes) => {
 }
 
 const testeAssessor2019 = (baseComissoes) => {
-    testeSheets(4054.0840000000003, assessor2019(baseComissoes, 2019, 11, 'Rubia'), 'Teste Assessor 2019')
+    testeSheets(4199.271999999999, assessor2019(baseComissoes, 2019, 11, 'Rubia'), 'Teste Assessor 2019')
 }
 
 const teste = async () => {
