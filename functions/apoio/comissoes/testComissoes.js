@@ -39,11 +39,18 @@ const testeAssessor2019 = (baseComissoes) => {
 
 const teste = async () => {
     try {
-        const dataBaseSheets = await rp(optionsGet('Base Comissões!A:Q'))
-        const dataAssessores = await rp(optionsGet('Apoio Comissões Assessores 2019!A:H'))
-        const baseAssessores = await arrayObject(dataAssessores)
-        const baseComissoes = await arrayObject(dataBaseSheets)
-        Promise.all([testeAssessor2020(baseComissoes),testLogistica2019(baseComissoes),testeCobrancas2019(baseComissoes),testeVendas2020(baseComissoes),testeAssessor2019(baseAssessores)])
+        const dataBaseSheetsRequest = await rp(optionsGet('Base Comissões!A:Q'))
+        const dataAssessoresRequest = await rp(optionsGet('Apoio Comissões Assessores 2019!A:H'))
+        Promise.all([dataBaseSheetsRequest,dataAssessoresRequest]).then(results => {
+            const [dataBaseSheets,dataAssessores] = results
+            const baseComissoes = arrayObject(dataBaseSheets)
+            const baseAssessores = arrayObject(dataAssessores)
+            testeAssessor2020(baseComissoes)
+            testLogistica2019(baseComissoes)
+            testeCobrancas2019(baseComissoes)
+            testeVendas2020(baseComissoes)
+            testeAssessor2019(baseAssessores)
+        })
     } catch (error) {
         console.log(error)
     }
