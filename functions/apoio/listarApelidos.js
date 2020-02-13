@@ -1,3 +1,9 @@
+const assessor2020 = require('./comissoes/assessores2020')
+const assessor2019 = require('./comissoes/assessores2019')
+const logistica2019 = require('./comissoes/logistica2019')
+const cobranca2019 = require('./comissoes/cobranca2019')
+const vendas2020 = require('./comissoes/vendas2020')
+
 const transData = (dataSheets) => {
     const arrayDate = dataSheets.split('-')
     const data = new Date(arrayDate[0], arrayDate[1], arrayDate[2])
@@ -18,4 +24,26 @@ const listarApelidos = (base, ano, mes) => {
     return result
 }
 
-module.exports = listarApelidos
+const listarParcela2 = (baseApelidos,baseComissoes, baseAssessor, ano, mes) => {
+    let listarParcela2 = listarApelidos(baseApelidos)
+    listarParcela2.map(item => {
+        if(item.modeloParcela2 === 'assessor2020'){
+            item.parcela2 = assessor2020(baseComissoes, ano, mes, item.apelido)
+        }
+        if(item.modeloParcela === 'assessor2019'){
+            item.parcela2 = assessor2019(baseAssessor, ano, mes, item.apelido)
+        }
+        if(item.modeloParcela === 'cobranca2019'){
+            item.parcela2 = cobranca2019(baseComissoes, ano, mes)
+        }
+        if(item.modeloParcela === 'lojistica2019'){
+            item.parcela2 = logistica2019(baseAssessor, ano, mes)
+        }
+        if(item.modeloParcela === 'vendas2020'){
+            item.parcela2 = vendas2020(baseAssessor, ano, mes, item.apelido)
+        }
+    })
+    return listarParcela2
+}
+
+module.exports = listarParcela2
