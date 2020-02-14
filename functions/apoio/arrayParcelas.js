@@ -15,27 +15,27 @@ const listarParcela2 = (modeloParcela2, baseComissoes, baseAssessor, ano,mes,ape
     if(modeloParcela2 === 'vendas2020') return vendas2020(baseComissoes, ano, mes, apelido)
 }
 
+// Calculo do ultimo dia do mês
 const calculoUltimoDia = (ano,mes) => {
     const finalMes = new Date((new Date(ano, mes))-1)
     return finalMes
 }
 
-
 // Listagem dos pagamentos efetuados por funcionário
-const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu) => {
+const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu) => {
     let listPagamentos = []
-    for(let i = dataInicio; i <= dataFim; i++){
-        new Date()
+    for(let i = mesInicio; i <= mesFim; i++){
         if(stringDate(dataEntrou).getFullYear() === 2020 && stringDate(dataEntrou).getMonth() === i){
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1:(calculoUltimoDia(2020,i) - stringDate(dataEntrou)/calculoUltimoDia(2020,i)),
+                parcela1:(calculoUltimoDia(2020,i) - stringDate(dataEntrou)/calculoUltimoDia(2020,i))*parcela1,
+                // colocar proporcional na parcela 2 também, somente quando for lojistica ou cobrança
                 parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
             })
         }
-        if(dataSaiu === '-' && stringDate(dataEntrou) <= new Date(2020,1) || stringDate(dataSaiu) <= new Date(2020, i) && stringDate(dataEntrou) <= new Date(2020,1)){
+        if(dataSaiu === '-' && stringDate(dataEntrou) <= new Date(2020,i) || stringDate(dataSaiu) <= new Date(2020, i) && stringDate(dataEntrou) >= new Date(2020,i)){
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
@@ -48,14 +48,12 @@ const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes
         }
     }
     return listPagamentos
-    
 }
 
 // Função final
 const listarPessoas = (basePessoas, baseComissoes, baseAssessor) => {
     const listaPessoa = basePessoas.map(pessoa => {
         const arrayPagamento = pagamentos(new Date(2020,1).getMonth(), new Date().getMonth()+1, pessoa.parcela1, pessoa.modeloParcela2, baseComissoes, baseAssessor, pessoa.apelido, pessoa.dataInicio, pessoa.dataFim)
-        console.log(stringDate(pessoa.dataInicio).getFullYear() === 2020 && stringDate(pessoa.dataInicio).getMonth() === 0)
         return arrayPagamento
     })
     return listaPessoa
