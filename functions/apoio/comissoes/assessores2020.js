@@ -20,8 +20,9 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
         item.ano === ano && item.mes === mes && item.assessor === assessor
     )
-    const receitas = filtrado.map(item => item.receita)
+    const receitas = filtrado.map((item) => item.receita)
     const transacoes = filtrado.map(item => item.valor)
+    if(receitas[0] != undefined && transacoes[0] != undefined){
     const somaTransacoes = transacoes.reduce(
         (anterior, proximo) => anterior + proximo
     )
@@ -29,6 +30,9 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
         (anterior, proximo) => anterior + proximo
     )
     return { transacionado_mes: somaTransacoes, receita_mes: somaReceitas }
+    }else{
+        return { transacionado_mes: [], receita_mes: [] }
+    }
 }
   
 // Função "main"
