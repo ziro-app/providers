@@ -8,10 +8,14 @@ const recebimento = (baseComissoes, ano, mes) => {
         item.anoRecebido === ano && item.mesRecebido === mes
     )
     const recebido = filtrado.map(item => item.recebido)
-    const somaRecebido = recebido.reduce(
-        (anterior, proximo) => anterior + proximo
-    )
-    return somaRecebido
+    if(recebido[0] != undefined){
+        const somaRecebido = recebido.reduce(
+            (anterior, proximo) => anterior + proximo
+        )
+        return somaRecebido
+    }else{
+        return []
+    }
 }
   
 // Função "main"

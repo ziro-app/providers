@@ -22,11 +22,11 @@ const testeAssessor2020 = (baseComissoes) => {
 }
 
 const testLogistica2019 = (baseComissoes) => {
-    testeSheets(243.10709999999992, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica 2019')
+    testeSheets(243.2236499999999, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica 2019')
 }
 
 const testeCobrancas2019 = (baseComissoes) => {
-    testeSheets(277.05964999999986, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças 2019')
+    testeSheets(280.0378699999999, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças 2019')
 }
 
 const testeVendas2020 = (baseComissoes) => {

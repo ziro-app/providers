@@ -19,13 +19,17 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, afiliado, tipoCliente) =
     )
     const receitas = filtrado.map(item => item.receita)
     const transacoes = filtrado.map(item => item.valor)
-    const somaTransacoes = transacoes.reduce(
-        (anterior, proximo) => anterior + proximo
-    )
-    const somaReceitas = receitas.reduce(
-        (anterior, proximo) => anterior + proximo
-    )
-    return { transacao_mes_afiliado: somaTransacoes, receita_mes_afiliado: somaReceitas }
+    if(receitas[0] != undefined && transacoes[0] != undefined){
+        const somaTransacoes = transacoes.reduce(
+            (anterior, proximo) => anterior + proximo
+        )
+        const somaReceitas = receitas.reduce(
+            (anterior, proximo) => anterior + proximo
+        )
+        return { transacao_mes_afiliado: somaTransacoes, receita_mes_afiliado: somaReceitas }
+    }else{
+        return { transacao_mes_afiliado: [], receita_mes_afiliado: [] }
+    }
 }
   
 // Função "main"

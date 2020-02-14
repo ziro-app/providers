@@ -3,10 +3,14 @@ const receitasNovoAfiliado = (baseComissoes, ano, mes, assessor) => {
         item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Novo' && item.afiliado !== 'NENHUM'
     )
     const receitas = filtrado.map(item => item.receita)
-    const somaReceitas = receitas.reduce(
-        (anterior, proximo) => anterior + proximo
-    )
-    return somaReceitas
+    if(receitas[0] != undefined){
+        const somaReceitas = receitas.reduce(
+            (anterior, proximo) => anterior + proximo
+        )
+        return somaReceitas
+    }else{
+        return []
+    }
 }
 
 const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
@@ -14,10 +18,14 @@ const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
         item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Antigo'
     )
     const receitas = filtrado.map(item => item.receita)
-    const somaReceitas = receitas.reduce(
-        (anterior, proximo) => anterior + proximo
-    )
-    return somaReceitas
+    if(receitas[0] != undefined){
+        const somaReceitas = receitas.reduce(
+            (anterior, proximo) => anterior + proximo
+        )
+        return somaReceitas
+    }else{
+        return []
+    }
 }
 
 let arrayNovos = []
