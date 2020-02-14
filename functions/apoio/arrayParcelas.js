@@ -3,6 +3,7 @@ const assessor2019 = require('./comissoes/assessores2019')
 const logistica2019 = require('./comissoes/logistica2019')
 const cobranca2019 = require('./comissoes/cobranca2019')
 const vendas2020 = require('./comissoes/vendas2020')
+const stringDate = require('@ziro/string-to-date')
 
 // Condicional de chamada da função de parcela2
 const listarParcela2 = (modeloParcela2, baseComissoes, baseAssessor, ano,mes,apelido) => {
@@ -19,13 +20,13 @@ const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes
     let listPagamentos = []
     for(let i = dataInicio; i <= dataFim; i++){
         if(dataSaiu === '-' ){
-        listPagamentos.push({
+            listPagamentos.push({
                 ano:new Date().getFullYear(),
-            mes: i ,
+                mes: i ,
                 apelido: apelido,
-            parcela1:parcela1,
-            parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
-        })
+                parcela1:parcela1,
+                parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
+            })
         }else{
             listPagamentos.push([])
         }
@@ -37,7 +38,7 @@ const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes
 // Função final
 const listarPessoas = (basePessoas, baseComissoes, baseAssessor) => {
     const listaPessoa = basePessoas.map(pessoa => {
-        const arrayPagamento = pagamentos(new Date(2020,1).getMonth(), new Date().getMonth()+1, pessoa.parcela1, pessoa.modeloParcela2, baseComissoes, baseAssessor, pessoa.apelido)
+        const arrayPagamento = pagamentos(new Date(2020,1).getMonth(), new Date().getMonth()+1, pessoa.parcela1, pessoa.modeloParcela2, baseComissoes, baseAssessor, pessoa.apelido, pessoa.dataInicio, pessoa.dataFim)
         return arrayPagamento
     })
     return listaPessoa
