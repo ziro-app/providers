@@ -11,11 +11,11 @@ const testeListarPessoas = async () => {
         const dataBasePessoasRequest = await rp(optionsGet('Pessoas!A:V'))
         Promise.all([dataBaseSheetsRequest,dataAssessoresRequest,dataBasePessoasRequest]).then(results => {
             const [dataBaseSheets,dataAssessores,dataBasePessoas] = results
-        const baseComissoes = arrayObject(dataBaseSheets)
-        const baseAssessores = arrayObject(dataAssessores)
+            const baseComissoes = arrayObject(dataBaseSheets)
+            const baseAssessores = arrayObject(dataAssessores)
             const basePessoas = arrayObject(dataBasePessoas)
-        const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores)
-        console.log(parcelas2)
+            const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores)
+            console.log(parcelas2)
         })
     } catch (error) {
         console.log(error)
