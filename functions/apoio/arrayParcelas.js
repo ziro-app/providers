@@ -15,15 +15,14 @@ const listarParcela2 = (modeloParcela2, baseComissoes, baseAssessor, ano,mes,ape
 }
 
 // Listagem dos pagamentos efetuados por funcionário
-let listPagamentos = []
 const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido) => {
+    let listPagamentos = []
     for(let i = dataInicio; i <= dataFim; i++){
-        let calculoParcela2 = listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
         listPagamentos.push({
             ano:2020,
             mes: i ,
             parcela1:parcela1,
-            parcela2:calculoParcela2
+            parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
         })
     }
     return listPagamentos
