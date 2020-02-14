@@ -21,6 +21,20 @@ const calculoUltimoDia = (ano,mes) => {
     return finalMes
 }
 
+// Achar alteração em reajust
+
+// const searchReajuste = (apelido, dataProcurada, baseReajuste, parcela) => {
+//     const filtrar = baseReajuste.filter(reajusteLine => {
+//         reajusteLine.data <= dataProcurada && reajusteLine.apelido === apelido
+//     })
+//     if(filtrar[0] != undefined){
+//         if(filtrar.parcela1 !== '-') return filtrar.parcela1
+//         if(filtrar.modeloParcela2 !== '-') return filtrar.modeloParcela2
+//     }else{
+//         return parcela
+//     }
+// }
+
 // Listagem dos pagamentos efetuados por funcionário
 const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu, baseReajuste) => {
     let listPagamentos = []
