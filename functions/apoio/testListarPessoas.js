@@ -9,12 +9,13 @@ const testeListarPessoas = async () => {
         const dataBaseSheetsRequest = await rp(optionsGet('Base Comissões!A:Q'))
         const dataAssessoresRequest = await rp(optionsGet('Apoio Comissões Assessores 2019!A:H'))
         const dataBasePessoasRequest = await rp(optionsGet('Pessoas!A:V'))
-        Promise.all([dataBaseSheetsRequest,dataAssessoresRequest,dataBasePessoasRequest]).then(results => {
-            const [dataBaseSheets,dataAssessores,dataBasePessoas] = results
+        const dataBaseReajusteRequest = await rp(optionsGet('Reajustes!A:G'))
+        Promise.all([dataBaseSheetsRequest,dataAssessoresRequest,dataBasePessoasRequest,dataBaseReajusteRequest]).then(results => {
+            const [dataBaseSheets,dataAssessores,dataBasePessoas, baseReajuste] = results
             const baseComissoes = arrayObject(dataBaseSheets)
             const baseAssessores = arrayObject(dataAssessores)
             const basePessoas = arrayObject(dataBasePessoas)
-            const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores)
+            const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores,baseReajuste)
             console.log(parcelas2)
         })
     } catch (error) {
