@@ -15,15 +15,20 @@ const listarParcela2 = (modeloParcela2, baseComissoes, baseAssessor, ano,mes,ape
 }
 
 // Listagem dos pagamentos efetuados por funcionário
-const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido) => {
+const pagamentos = (dataInicio, dataFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu) => {
     let listPagamentos = []
     for(let i = dataInicio; i <= dataFim; i++){
+        if(dataSaiu === '-' ){
         listPagamentos.push({
-            ano:2020,
+                ano:new Date().getFullYear(),
             mes: i ,
+                apelido: apelido,
             parcela1:parcela1,
             parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
         })
+        }else{
+            listPagamentos.push([])
+        }
     }
     return listPagamentos
     
