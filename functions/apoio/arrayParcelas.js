@@ -22,26 +22,29 @@ const calculoUltimoDia = (ano,mes) => {
 }
 
 // Listagem dos pagamentos efetuados por funcionário
-const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu) => {
+const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu, baseReajuste) => {
     let listPagamentos = []
     for(let i = mesInicio; i <= mesFim; i++){
-        if(stringDate(dataEntrou).getFullYear() === 2020 && stringDate(dataEntrou).getMonth() === i){
+        if((stringDate(dataEntrou)).getFullYear() === 2020 && (stringDate(dataEntrou)).getMonth() === i){
+            const parcela1 = (calculoUltimoDia(2020,i) - stringDate(dataEntrou)/calculoUltimoDia(2020,i))*parcela1
+            const parcela2 = listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1:(calculoUltimoDia(2020,i) - stringDate(dataEntrou)/calculoUltimoDia(2020,i))*parcela1,
+                parcela1: parcela1,
                 // colocar proporcional na parcela 2 também, somente quando for lojistica ou cobrança
-                parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
+                parcela2: parcela2
             })
         }
         if(dataSaiu === '-' && stringDate(dataEntrou) <= new Date(2020,i) || stringDate(dataSaiu) <= new Date(2020, i) && stringDate(dataEntrou) >= new Date(2020,i)){
+            const parcela2 = listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1:parcela1,
-                parcela2:listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
+                parcela1: parcela1,
+                parcela2: parcela2
             })
         }else{
             listPagamentos.push([])
@@ -51,9 +54,9 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
 }
 
 // Função final
-const listarPessoas = (basePessoas, baseComissoes, baseAssessor) => {
+const listarPessoas = (basePessoas, baseComissoes, baseAssessor,baseReajuste) => {
     const listaPessoa = basePessoas.map(pessoa => {
-        const arrayPagamento = pagamentos(new Date(2020,1).getMonth(), new Date().getMonth()+1, pessoa.parcela1, pessoa.modeloParcela2, baseComissoes, baseAssessor, pessoa.apelido, pessoa.dataInicio, pessoa.dataFim)
+        const arrayPagamento = pagamentos(new Date(2020,1).getMonth(), new Date().getMonth()+1, pessoa.parcela1, pessoa.modeloParcela2, baseComissoes, baseAssessor, pessoa.apelido, pessoa.dataInicio, pessoa.dataFim,baseReajuste)
         return arrayPagamento
     })
     return listaPessoa
