@@ -1,5 +1,5 @@
 const rp = require('request-promise-native')
-const optionsGet = require('../googlesheets/optionsGetGoogle')
+const optionsBatchGet = require('../googlesheets/optionsbatchGet')
 const arrayObject = require('@ziro/array-object')
 const assessor2020 = require('./assessores2020')
 const logistica2019 = require('./logistica2019')
@@ -39,18 +39,15 @@ const testeAssessor2019 = (baseComissoes) => {
 
 const teste = async () => {
     try {
-        const dataBaseSheetsRequest = await rp(optionsGet('Base Comissões!A:Q'))
-        const dataAssessoresRequest = await rp(optionsGet('Apoio Comissões Assessores 2019!A:H'))
-        Promise.all([dataBaseSheetsRequest,dataAssessoresRequest]).then(results => {
-            const [dataBaseSheets,dataAssessores] = results
-            const baseComissoes = arrayObject(dataBaseSheets)
-            const baseAssessores = arrayObject(dataAssessores)
-            testeAssessor2020(baseComissoes)
-            testLogistica2019(baseComissoes)
-            testeCobrancas2019(baseComissoes)
-            testeVendas2020(baseComissoes)
-            testeAssessor2019(baseAssessores)
-        })
+        const results = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H']))
+        const [dataBaseSheets,dataAssessores] = results.valueRanges 
+        const baseComissoes = arrayObject(dataBaseSheets)
+        const baseAssessores = arrayObject(dataAssessores)
+        testeAssessor2020(baseComissoes)
+        testLogistica2019(baseComissoes)
+        testeCobrancas2019(baseComissoes)
+        testeVendas2020(baseComissoes)
+        testeAssessor2019(baseAssessores)
     } catch (error) {
         console.log(error)
     }
