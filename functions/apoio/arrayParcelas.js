@@ -23,32 +23,37 @@ const calculoUltimoDia = (ano,mes) => {
 
 // Achar alteração em reajust
 
-// const searchReajuste = (apelido, dataProcurada, baseReajuste, parcela) => {
-//     const filtrar = baseReajuste.filter(reajusteLine => {
-//         reajusteLine.data <= dataProcurada && reajusteLine.apelido === apelido
-//     })
-//     if(filtrar[0] != undefined){
-//         if(filtrar.parcela1 !== '-') return filtrar.parcela1
-//         if(filtrar.modeloParcela2 !== '-') return filtrar.modeloParcela2
-//     }else{
-//         return parcela
-//     }
-// }
+const searchReajuste = (apelido, dataProcurada, baseReajuste, parametro) => {
+    const filtrar = baseReajuste.filter(reajusteLine => {
+        return (
+            reajusteLine.data >= dataProcurada && reajusteLine.apelido === apelido
+        )
+    })
+    if (filtrar[0] !== undefined) {
+        const ultimo = filtrar.length - 1
+        if (filtrar[ultimo].parcela1 !== '-') return filtrar[ultimo].parcela1
+        if (filtrar[ultimo].modeloParcela2 !== '-') return filtrar[ultimo].modeloParcela2
+        if (filtrar[ultimo].escopo !== '-') return filtrar[ultimo].escopo
+    } else {
+        return parametro
+    }
+}
+  
 
 // Listagem dos pagamentos efetuados por funcionário
 const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu, baseReajuste) => {
     let listPagamentos = []
     for(let i = mesInicio; i <= mesFim; i++){
         if((stringDate(dataEntrou)).getFullYear() === 2020 && (stringDate(dataEntrou)).getMonth() === i){
-            const parcela1 = (calculoUltimoDia(2020,i) - stringDate(dataEntrou)/calculoUltimoDia(2020,i))*parcela1
+            const coeficiente = (calculoUltimoDia(2020,i) - stringDate(dataEntrou)/calculoUltimoDia(2020,i))
             const parcela2 = listarParcela2(modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1: parcela1,
+                parcela1: parcela1*coeficiente,
                 // colocar proporcional na parcela 2 também, somente quando for lojistica ou cobrança
-                parcela2: parcela2
+                parcela2: parcela2*coeficiente
             })
         }
         if(dataSaiu === '-' && stringDate(dataEntrou) <= new Date(2020,i) || stringDate(dataSaiu) <= new Date(2020, i) && stringDate(dataEntrou) >= new Date(2020,i)){
@@ -57,7 +62,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1: parcela1,
+                parcela1: searchReajuste(apelido,new Date(2020,i), baseReajuste, parcela1),
                 parcela2: parcela2
             })
         }else{
