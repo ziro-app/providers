@@ -13,7 +13,6 @@ const optionsPost = (body) =>{
             'Authorization': auth
         },
         body : {
-            
             'apiResource': 'values',
             'apiMethod': 'append',
             'spreadsheetId': process.env.sheetsId,
