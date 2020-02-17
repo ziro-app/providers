@@ -12,7 +12,7 @@ const testeListarPessoas = async () => {
         const baseAssessores = arrayObject(dataAssessores)
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
-        const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores,baseReajustes)
+        const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores, baseReajustes)
         console.log(parcelas2)
     } catch (error) {
         console.log(error)
