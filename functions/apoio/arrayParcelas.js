@@ -26,7 +26,7 @@ const calculoUltimoDia = (ano,mes) => {
 const searchReajuste = (apelido, dataProcurada, baseReajuste, parametro) => {
     const filtrar = baseReajuste.filter(reajusteLine => {
         return (
-            reajusteLine.data >= dataProcurada && reajusteLine.apelido === apelido
+            dataProcurada >= stringDate(reajusteLine.data) && reajusteLine.apelido === apelido
         )
     })
     if (filtrar[0] !== undefined) {
@@ -63,7 +63,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
                 mes: i ,
                 apelido: apelido,
                 parcela1: searchReajuste(apelido,new Date(2020,i), baseReajuste, parcela1),
-                parcela2: parcela2
+                parcela2: searchReajuste(apelido,new Date(2020,i), baseReajuste, parcela2)
             })
         }else{
             listPagamentos.push([])
