@@ -12,7 +12,6 @@ exports.handler = function(event, context, callback){
     const getEmployees = async () => {
         try {
             const listPagamentos = await listPayments()
-            console.log(listPagamentos)
             send(listPagamentos)
         } catch (error) {
             send(error)
