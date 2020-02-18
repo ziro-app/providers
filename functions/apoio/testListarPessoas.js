@@ -13,10 +13,10 @@ const testeListarPessoas = async () => {
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
         const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores, baseReajustes)
-        console.log(parcelas2)
+        return parcelas2
     } catch (error) {
-        console.log(error)
+        return error
     }
 }
 
-testeListarPessoas()
+module.exports = testeListarPessoas

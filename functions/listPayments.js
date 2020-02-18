@@ -1,4 +1,4 @@
-const main = require('./apoio/main')
+const listPayments = require('./apoio/testListarPessoas')
 require('dotenv').config()
 
 
@@ -10,12 +10,10 @@ exports.handler = function(event, context, callback){
         })
     }
     const getEmployees = async () => {
-        const ano = event.queryStringParameters.ano
-        const mes = event.queryStringParameters.mes
-        const assessor = event.queryStringParameters.assessor
-        const resultado = await main(ano,mes,assessor)
         try {
-            send(resultado)
+            const listPagamentos = await listPayments()
+            console.log(listPagamentos)
+            send(listPagamentos)
         } catch (error) {
             send(error)
         }
