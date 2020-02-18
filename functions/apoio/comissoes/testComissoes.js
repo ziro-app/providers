@@ -18,7 +18,7 @@ const testeSheets = (expected, calculate, titulo) => {
 }
 
 const testeAssessor2020 = (baseComissoes) => {
-    testeSheets(53586.56099999998, assessor2020(baseComissoes, 2020, 1, 'Rubia'), 'Teste Assessor 2020')
+    testeSheets(2053.01, assessor2020(baseComissoes, 2020, 2, 'Rubia'), 'Teste Assessor 2020')
 }
 
 const testLogistica2019 = (baseComissoes) => {
