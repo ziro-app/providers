@@ -1,7 +1,7 @@
 const stringDate = require('@ziro/string-to-date')
-const listarParcela2 = require('./listarParcela2')
 
-const searchReajuste = (apelido, dataProcurada, baseReajuste, parametro, descricao, baseComissoes, baseAssessor, i) => {
+const searchReajuste = (apelido, dataProcurada, baseReajuste) => {
+    let result = []
     const filtrar = baseReajuste.filter(reajusteLine => {
         return (
             dataProcurada >= stringDate(reajusteLine.data) && reajusteLine.apelido === apelido
@@ -9,12 +9,11 @@ const searchReajuste = (apelido, dataProcurada, baseReajuste, parametro, descric
     })
     if (filtrar[0] !== undefined) {
         const ultimo = filtrar.length - 1
-        if (descricao == 'parcela1' && filtrar[ultimo].parcela1 !== '-') return filtrar[ultimo].parcela1
-        if (descricao == 'parcela2' && filtrar[ultimo].modeloParcela2 !== '-') return listarParcela2(filtrar[ultimo].modeloParcela2, baseComissoes, baseAssessor, 2020, i, apelido)
-        if (descricao == 'escopo' && filtrar[ultimo].escopo !== '-') return filtrar[ultimo].escopo
-        return parametro
+        if (filtrar[ultimo].parcela1 !== '-') result.push(filtrar[ultimo].parcela1)
+        if (filtrar[ultimo].modeloParcela2 !== '-') result.push(filtrar[ultimo].modeloParcela2)
+        if (filtrar[ultimo].escopo !== '-') result.push(filtrar[ultimo].escopo)
     }
-    return parametro
+    return result
 }
 
 module.exports = searchReajuste
