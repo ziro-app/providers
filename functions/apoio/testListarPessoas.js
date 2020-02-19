@@ -1,6 +1,6 @@
 const rp = require('request-promise-native')
 const arrayObject = require('@ziro/array-object')
-const listaParcela2 = require('./arrayParcelas')
+const listaParcela2 = require('./listarParcelas')
 const optionsBatchGet = require('./googlesheets/optionsbatchGet')
 require('dotenv').config()
 
