@@ -1,6 +1,6 @@
 const rp = require('request-promise-native')
 const arrayObject = require('@ziro/array-object')
-const listaParcela2 = require('./listarParcelas')
+const listaParcela = require('./listarParcelas')
 const optionsBatchGet = require('./googlesheets/optionsbatchGet')
 require('dotenv').config()
 
@@ -12,7 +12,7 @@ const testeListarPessoas = async () => {
         const baseAssessores = arrayObject(dataAssessores)
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
-        const parcelas2 = listaParcela2(basePessoas, baseComissoes, baseAssessores, baseReajustes)
+        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
         return parcelas2
     } catch (error) {
         return error

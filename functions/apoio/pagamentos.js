@@ -1,5 +1,5 @@
 const stringDate = require('@ziro/string-to-date')
-const listarParcela2 = require('./listarParcela2')
+const listarParcela2 = require('./parcela2')
 const searchReajuste = require('./searchReajuste')
 
 // Calculo do ultimo dia do mês
