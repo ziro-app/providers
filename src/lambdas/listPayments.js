@@ -21,7 +21,7 @@ const getEmployees = async () => {
     } catch (error) {
         return {
             statusCode: 500,
-            body: error
+            body: JSON.stringify(error)
         }
     }
 }
