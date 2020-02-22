@@ -2,6 +2,7 @@ const rp = require('request-promise-native')
 const arrayObject = require('@ziro/array-object')
 const listaParcela = require('../apoio/listarParcelas')
 const optionsBatchGet = require('../apoio/googlesheets/optionsbatchGet')
+const objectToArray = require('../apoio/objectToArray')
 const main = require('../templates/main')
 require('dotenv').config()
 
@@ -14,9 +15,10 @@ const getEmployees = async () => {
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
         const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
+        const sheetsData = objectToArray(parcelas2)
         return {
             statusCode: 200,
-            body: JSON.stringify(parcelas2)
+            body: JSON.stringify(sheetsData)
         }
     } catch (error) {
         return {
