@@ -2,7 +2,7 @@ const rp = require('request-promise-native')
 const arrayObject = require('@ziro/array-object')
 const listaParcela = require('../apoio/listarParcelas')
 const optionsBatchGet = require('../apoio/googlesheets/optionsbatchGet')
-const objectToArray = require('../apoio/objectToArray')
+const objectToArray = require('@ziro/object-array')
 const main = require('../templates/main')
 require('dotenv').config()
 
