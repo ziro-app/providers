@@ -1,3 +1,5 @@
-.env
 node_modules
-lambda
+functions
+.DS_Store
+.env
+credentials.json
