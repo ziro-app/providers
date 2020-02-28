@@ -18,7 +18,7 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
 // Agrupamento dos valores necessários para o calculo
 const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor
+        item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
     )
     const receitas = filtrado.map((item) => item.receita)
     const transacoes = filtrado.map(item => item.valor)

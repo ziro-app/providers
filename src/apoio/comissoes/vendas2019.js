@@ -15,10 +15,10 @@ const calculoVendas2020 = (
 // Agrupamento dos valores necessários para o calculo
 const transacoes_e_receitas = (baseComissoes, ano, mes, afiliado, tipoCliente) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.afiliado === afiliado && item.tipoCliente === tipoCliente
+        item.ano === ano && item.mes === mes && item.afiliado.toLowerCase() === afiliado.toLowerCase() && item.tipoCliente === tipoCliente
     )
     const receitas = filtrado.map(item => item.receita)
-    const transacoes = filtrado.map(item => item.valor)
+    const transacoes = filtrado.map(item => item.valor) 
     if(receitas[0] != undefined && transacoes[0] != undefined){
         const somaTransacoes = transacoes.reduce(
             (anterior, proximo) => anterior + proximo

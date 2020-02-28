@@ -15,7 +15,7 @@ const receitasNovoAfiliado = (baseComissoes, ano, mes, assessor) => {
 
 const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Antigo'
+        item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Antigo'
     )
     const receitas = filtrado.map(item => item.receita)
     if(receitas[0] != undefined){
@@ -31,7 +31,7 @@ const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
 let arrayNovos = []
 const receitasNovo = (baseComissoes, ano, mes, assessor) => {
     const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Novo' && item.afiliado === 'NENHUM'
+        item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Novo' && item.afiliado === 'NENHUM'
     )
     filtrado.map(item => arrayNovos.push(item.receita))
     return arrayNovos

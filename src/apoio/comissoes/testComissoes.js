@@ -4,7 +4,7 @@ const arrayObject = require('@ziro/array-object')
 const assessor2020 = require('./assessores2020')
 const logistica2019 = require('./logistica2019')
 const cobranca2019 = require('./cobranca2019')
-const vendas2020 = require('./vendas2020')
+const vendas2019 = require('./vendas2019')
 const assessor2019 = require('./assessores2019')
 require('dotenv').config()
 
@@ -30,7 +30,7 @@ const testeCobrancas2019 = (baseComissoes) => {
 }
 
 const testeVendas2020 = (baseComissoes) => {
-    testeSheets(1708.635, vendas2020(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas 2020')
+    testeSheets(1708.635, vendas2019(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas 2020')
 }
 
 const testeAssessor2019 = (baseComissoes) => {
