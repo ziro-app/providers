@@ -21,7 +21,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
                 mes: i ,
                 apelido: apelido,
                 parcela1: parcela1*coeficiente,
-                parcela2: parcela2*coeficiente
+                parcela2: parcela2
             })
         }
         if(dataSaiu === '-' && stringDate(dataEntrou) <= new Date(new Date().getFullYear(),i) || stringDate(dataSaiu) <= new Date(new Date().getFullYear(), i) && stringDate(dataEntrou) >= new Date(new Date().getFullYear(),i)){
