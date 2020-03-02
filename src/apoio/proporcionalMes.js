@@ -6,8 +6,11 @@ const calculoUltimoDia = (ano,mes) => {
     return finalMes
 } 
 
-const coeficiente = (dataEntrou, ano, mes) =>{
-    return (new Date(calculoUltimoDia(ano,mes) - stringDate(dataEntrou)).getDate())/(new Date(calculoUltimoDia(ano,mes))).getDate()
+const coeficiente = (dataEntrou) =>{
+    const data = stringDate(dataEntrou)
+    const ano = data.getUTCFullYear()
+    const mes = data.getMonth() + 1
+    return (new Date(calculoUltimoDia(ano,mes) - data).getDate())/(new Date(calculoUltimoDia(ano,mes))).getDate()
 }
 
 module.exports = coeficiente

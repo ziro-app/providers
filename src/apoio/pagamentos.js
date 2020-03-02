@@ -10,7 +10,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
         const entrouEsseMes = (stringDate(dataEntrou)).getFullYear() === new Date().getFullYear() && (stringDate(dataEntrou)).getMonth()+1 === i
         const [reajusteParcela1, reajusteModeloParcela2] = searchReajuste(apelido,new Date(new Date().getFullYear(),i), baseReajuste)
         if(entrouEsseMes){
-            const coeficiente = calcCoeficiente(dataEntrou,new Date().getFullYear(),i)
+            const coeficiente = calcCoeficiente(dataEntrou)
             const parcela2 = listarParcela2(modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
