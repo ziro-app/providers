@@ -1,28 +1,36 @@
 const receitasNovoAfiliado = (baseComissoes, ano, mes, assessor) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Novo' && item.afiliado !== 'NENHUM'
-    )
-    const receitas = filtrado.map(item => item.receita)
-    if(receitas[0] != undefined){
-        const somaReceitas = receitas.reduce(
-            (anterior, proximo) => anterior + proximo
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.ano === ano && item.mes === mes && item.assessor === assessor && item.tipoCliente === 'Novo' && item.afiliado !== 'NENHUM'
         )
-        return somaReceitas
+        const receitas = filtrado.map(item => item.receita)
+        if(receitas[0] != undefined){
+            const somaReceitas = receitas.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            return somaReceitas
+        }else{
+            return []
+        }
     }else{
         return []
     }
 }
 
 const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Antigo'
-    )
-    const receitas = filtrado.map(item => item.receita)
-    if(receitas[0] != undefined){
-        const somaReceitas = receitas.reduce(
-            (anterior, proximo) => anterior + proximo
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Antigo'
         )
-        return somaReceitas
+        const receitas = filtrado.map(item => item.receita)
+        if(receitas[0] != undefined){
+            const somaReceitas = receitas.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            return somaReceitas
+        }else{
+            return []
+        }
     }else{
         return []
     }
@@ -30,11 +38,15 @@ const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
 
 let arrayNovos = []
 const receitasNovo = (baseComissoes, ano, mes, assessor) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Novo' && item.afiliado === 'NENHUM'
-    )
-    filtrado.map(item => arrayNovos.push(item.receita))
-    return arrayNovos
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Novo' && item.afiliado === 'NENHUM'
+        )
+        filtrado.map(item => arrayNovos.push(item.receita))
+        return arrayNovos
+    }else{
+        []
+    }
 }
 
 // Função de apoio para o array dado

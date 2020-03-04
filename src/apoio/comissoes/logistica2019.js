@@ -3,15 +3,19 @@ const calculoLogistica2019 = receita_mes_ziro => receita_mes_ziro * 0.005
 
 // Agrupamento dos valores necessários para o calculo
 const receitas = (baseComissoes, ano, mes) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes
-    )
-    const receitas = filtrado.map(item => item.receita)
-    if(receitas[0] != undefined){
-        const somaRecebido = receitas.reduce(
-            (anterior, proximo) => anterior + proximo
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.ano === ano && item.mes === mes
         )
-        return somaRecebido
+        const receitas = filtrado.map(item => item.receita)
+        if(receitas[0] != undefined){
+            const somaRecebido = receitas.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            return somaRecebido
+        }else{
+            return []
+        }
     }else{
         return []
     }

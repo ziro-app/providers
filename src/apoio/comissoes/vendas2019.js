@@ -14,19 +14,23 @@ const calculoVendas2020 = (
 
 // Agrupamento dos valores necessários para o calculo
 const transacoes_e_receitas = (baseComissoes, ano, mes, afiliado, tipoCliente) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.afiliado.toLowerCase() === afiliado.toLowerCase() && item.tipoCliente === tipoCliente
-    )
-    const receitas = filtrado.map(item => item.receita)
-    const transacoes = filtrado.map(item => item.valor) 
-    if(receitas[0] != undefined && transacoes[0] != undefined){
-        const somaTransacoes = transacoes.reduce(
-            (anterior, proximo) => anterior + proximo
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.ano === ano && item.mes === mes && item.afiliado.toLowerCase() === afiliado.toLowerCase() && item.tipoCliente === tipoCliente
         )
-        const somaReceitas = receitas.reduce(
-            (anterior, proximo) => anterior + proximo
-        )
-        return { transacao_mes_afiliado: somaTransacoes, receita_mes_afiliado: somaReceitas }
+        const receitas = filtrado.map(item => item.receita)
+        const transacoes = filtrado.map(item => item.valor) 
+        if(receitas[0] != undefined && transacoes[0] != undefined){
+            const somaTransacoes = transacoes.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            const somaReceitas = receitas.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            return { transacao_mes_afiliado: somaTransacoes, receita_mes_afiliado: somaReceitas }
+        }else{
+            return { transacao_mes_afiliado: [], receita_mes_afiliado: [] }
+        }
     }else{
         return { transacao_mes_afiliado: [], receita_mes_afiliado: [] }
     }

@@ -4,15 +4,19 @@ const calculoCobranca2019 = cobrancas_mes => {
 }
 
 const recebimento = (baseComissoes, ano, mes) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.anoRecebido === ano && item.mesRecebido === mes
-    )
-    const recebido = filtrado.map(item => item.recebido)
-    if(recebido[0] != undefined){
-        const somaRecebido = recebido.reduce(
-            (anterior, proximo) => anterior + proximo
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.anoRecebido === ano && item.mesRecebido === mes
         )
-        return somaRecebido
+        const recebido = filtrado.map(item => item.recebido)
+        if(recebido[0] != undefined){
+            const somaRecebido = recebido.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            return somaRecebido
+        }else{
+            return []
+        }
     }else{
         return []
     }
