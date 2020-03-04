@@ -1,5 +1,5 @@
 const stringDate = require('@ziro/string-to-date')
-const calcCoeficiente = require('./proporcionalMes')
+const calcCoeficiente = require('./coeficienteMes')
 const listarParcela2 = require('./parcela2')
 const searchReajuste = require('./searchReajuste')
 
