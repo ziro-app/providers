@@ -6,7 +6,7 @@ const testeAssessores2019 = (titulo,expected, base, ano, mes, assessor) => {
     const calculado = assessor2019(base, ano, mes, assessor)
     const esperado = expected
     const diferenca = esperado - calculado
-    console.log(titulo)
+    console.log('\x1b[35m%s\x1b[0m',titulo)
     console.log(`Comissão ${assessor} ${mes}/${ano}`)
     console.log(`Simulado: ${calculado}`)
     console.log(`Pago: ${esperado}`)
