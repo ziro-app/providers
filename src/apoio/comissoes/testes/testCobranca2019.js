@@ -6,7 +6,7 @@ const testeCobranca2019 = (titulo,expected, base, ano, mes, assessor) => {
     const calculado = cobranca2019(base, ano, mes)
     const esperado = expected
     const diferenca = esperado - calculado
-    console.log(titulo)
+    console.log('\x1b[35m%s\x1b[0m',titulo)
     console.log(`Comissão Logista ${mes}/${ano}`)
     console.log(`Simulado: ${calculado}`)
     console.log(`Pago: ${esperado}`)
@@ -15,8 +15,12 @@ const testeCobranca2019 = (titulo,expected, base, ano, mes, assessor) => {
     else console.log('\x1b[31m%s\x1b[0m',`Simulação não está com o mesmo valor do esperado, diferença: ${diferenca}`)
 }
 
-testeCobranca2019('Teste de valor',56,base,2019,1,'Rubia')
-testeCobranca2019('Teste de data errada', 0,base,2019,22,'Rubia')
-testeCobranca2019('Teste de nome errado', 0,base,2019,2,'AUHdsjand~sa')
-testeCobranca2019('Teste de nome numerico', 0,base,2019,2,1231)
-testeCobranca2019('Teste de nome array', 0,base,2019,2,['a','b'])
+testeCobranca2019('Teste de valor',46,base,2019,1)
+testeCobranca2019('Teste de data errada', 0,base,2019,22)
+testeCobranca2019('Teste de data NaN', 0,base,NaN,NaN)
+testeCobranca2019('Teste de data undefined', 0,base,undefined,undefined)
+testeCobranca2019('Teste de base empty array',0,[],2019,1)
+testeCobranca2019('Teste de base undefined',0,undefined,2019,1)
+testeCobranca2019('Teste de base NaN',0,NaN,2019,1)
+testeCobranca2019('Teste de base array',0,['a','b'],2019,1)
+testeCobranca2019('Teste de base array',0,0,2019,1)
