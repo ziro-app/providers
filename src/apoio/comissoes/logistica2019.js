@@ -7,10 +7,14 @@ const receitas = (baseComissoes, ano, mes) => {
         item.ano === ano && item.mes === mes
     )
     const receitas = filtrado.map(item => item.receita)
-    const somaReceitas = receitas.reduce(
-        (anterior, proximo) => anterior + proximo
-    )
-    return somaReceitas
+    if(receitas[0] != undefined){
+        const somaRecebido = receitas.reduce(
+            (anterior, proximo) => anterior + proximo
+        )
+        return somaRecebido
+    }else{
+        return []
+    }
 }
   
 // Função "main"

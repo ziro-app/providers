@@ -1,11 +1,11 @@
 const rp = require('request-promise-native')
-const optionsBatchGet = require('../googlesheets/optionsbatchGet')
+const optionsBatchGet = require('../../googlesheets/optionsbatchGet')
 const arrayObject = require('@ziro/array-object')
-const assessor2020 = require('./assessores2020')
-const logistica2019 = require('./logistica2019')
-const cobranca2019 = require('./cobranca2019')
-const vendas2019 = require('./vendas2019')
-const assessor2019 = require('./assessores2019')
+const assessor2020 = require('../assessores2020')
+const logistica2019 = require('../logistica2019')
+const cobranca2019 = require('../cobranca2019')
+const vendas2019 = require('../vendas2019')
+const assessor2019 = require('../assessores2019')
 require('dotenv').config()
 
 const testeSheets = (expected, calculate, titulo) => {

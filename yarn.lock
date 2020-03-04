@@ -1030,6 +1030,11 @@
   resolved "https://registry.yarnpkg.com/@ziro/middleware/-/middleware-1.0.4.tgz#b511e007d39335137f4bfc939d68d946ca43fe4a"
   integrity sha512-R1+ja46+7h3X0TnMIp8TyOjHiywpI/T7kZIxmRc2ZxkDV2G1QSPX+TR0ifBL77Pa8sxxiTc/aZO1xZhTyaPZQA==
 
+"@ziro/object-array@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@ziro/object-array/-/object-array-1.0.2.tgz#e68da2a90bda3c51a769b6649921cbdbb54604cc"
+  integrity sha512-iDYM58DSj9GyfR+cXrvopo+E6dX5vBoUWC/E7RKoEP6OUa+umCd9IYJom4OByngzCnlDvW8h8NoC2aPfmKtO0Q==
+
 "@ziro/string-to-date@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ziro/string-to-date/-/string-to-date-1.0.0.tgz#cbff7a7bc34e2ec97965bcb9428a41dbedea45d8"
