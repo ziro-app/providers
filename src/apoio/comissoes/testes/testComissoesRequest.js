@@ -8,33 +8,36 @@ const vendas2019 = require('../vendas2019')
 const assessor2019 = require('../assessores2019')
 require('dotenv').config()
 
-const testeSheets = (expected, calculate, titulo) => {
+const testeSheets = (expected, calculate, titulo,ano,mes) => {
     const calculado = calculate
     const esperado = expected
-    console.log(titulo)
-    console.log('Calculado', calculado, 'Esperado', esperado)
-    if(calculado === esperado) console.log('Resultado do teste:', 'PASSOU!!! :)')
-    else console.log('Resultado do teste:', 'NÃO PASSOU')
+    const diferenca = esperado - calculado
+    console.log('\x1b[35m%s\x1b[0m',titulo)
+    console.log(`Simulado: ${calculado}`)
+    console.log(`Pago: ${esperado}`)
+    console.log(`Diferença: ${diferenca}`)
+    if(diferenca === 0) console.log('\x1b[32m%s\x1b[0m',`Comissão solicitada em ${mes}/${ano} foi simulado corretamente, o valor esperado era ${esperado}}`)
+    else console.log('\x1b[31m%s\x1b[0m',`Simulação não está com o mesmo valor do esperado, diferença: ${diferenca}`)
 }
 
 const testeAssessor2020 = (baseComissoes) => {
-    testeSheets(2053.01, assessor2020(baseComissoes, 2020, 2, 'Rubia'), 'Teste Assessor 2020')
+    testeSheets(4266.887000000001, assessor2020(baseComissoes, 2020, 1, 'Rubia'), 'Teste Assessor2020 Rubia 01/2020',2020,1)
 }
 
 const testLogistica2019 = (baseComissoes) => {
-    testeSheets(243.2236499999999, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica 2019')
+    testeSheets(243.2236499999999, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica2019 01/2020',2020,1)
 }
 
 const testeCobrancas2019 = (baseComissoes) => {
-    testeSheets(280.0378699999999, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças 2019')
+    testeSheets(279.84200999999985, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças2019 01/2020',2020,1)
 }
 
 const testeVendas2020 = (baseComissoes) => {
-    testeSheets(1708.635, vendas2019(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas 2020')
+    testeSheets(1708.635, vendas2019(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas2019 Davi 01/2020',2020,1)
 }
 
 const testeAssessor2019 = (baseComissoes) => {
-    testeSheets(4199.271999999999, assessor2019(baseComissoes, 2019, 11, 'Rubia'), 'Teste Assessor 2019')
+    testeSheets(4520.26, assessor2019(baseComissoes, 2019, 10, 'Rubia'), 'Teste Assessor2019 Rubia 10/2019',2019,10)
 }
 
 const teste = async () => {
