@@ -7,10 +7,14 @@ const calculoUltimoDia = (ano,mes) => {
 } 
 
 const coeficiente = (dataEntrou) =>{
-    const data = stringDate(dataEntrou)
-    const ano = data.getUTCFullYear()
-    const mes = data.getMonth() + 1
-    return (new Date(calculoUltimoDia(ano,mes) - data).getDate())/(new Date(calculoUltimoDia(ano,mes))).getDate()
+    if(dataEntrou.toString().includes('/') || dataEntrou.toString().includes('-')){
+        const data = stringDate(dataEntrou)
+        const ano = data.getUTCFullYear()
+        const mes = data.getMonth() + 1
+        return (new Date(calculoUltimoDia(ano,mes) - data).getDate())/(new Date(calculoUltimoDia(ano,mes))).getDate()
+    }else{
+        return NaN
+    }
 }
 
 module.exports = coeficiente
