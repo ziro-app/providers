@@ -15,7 +15,9 @@ const testeCoef = (expected, titulo, stringDate) => {
 
 testeCoef(0.3448275862068966,'Teste coef com valor data de fevereiro','20/02/2020')
 testeCoef(0.3870967741935484,'Teste coef com valor data de dezembro','20/12/2020')
+testeCoef(1,'Teste coef com valor data de dezembro','01/12/2020')
 testeCoef(0.3870967741935484,'Teste coef com valor data de dezembro com -','20-12-2020')
+testeCoef(0.6774193548387096,'Teste coef com valor data de dezembro com -','11-12-2020')
 testeCoef(NaN,'Teste coef com formato diferente de data','12/jan./2020')
 testeCoef(NaN,'Teste coef com valor data de string','batata')
 testeCoef(NaN,'Teste coef com valor data number',1)
