@@ -5,7 +5,7 @@ const searchReajuste = (apelido, dataProcurada, baseReajuste) => {
     if(baseReajuste){
         const filtrar = baseReajuste.filter(reajusteLine => {
             return (
-                dataProcurada >= stringDate(reajusteLine.data) && reajusteLine.apelido === apelido
+                dataProcurada > stringDate(reajusteLine.data) && reajusteLine.apelido === apelido
             )
         })
         if (filtrar.length) {

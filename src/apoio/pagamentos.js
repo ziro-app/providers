@@ -11,18 +11,18 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
         const [reajusteParcela1, reajusteModeloParcela2] = searchReajuste(apelido,new Date(new Date().getFullYear(),i), baseReajuste)
         if(entrouEsseMes){
             const coeficiente = calcCoeficiente(dataEntrou)
-            const parcela2 = listarParcela2(modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
+            const parcela2 = listarParcela2(reajusteModeloParcela2 || modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1: parcela1*coeficiente,
+                parcela1: reajusteParcela1 || parcela1*coeficiente,
                 parcela2: parcela2
             })
         }
-        const continuaNaZiro = !entrouEsseMes && dataSaiu === '-' && stringDate(dataEntrou) <= new Date(new Date().getFullYear(),i) || dataSaiu !== '-' && !entrouEsseMes && stringDate(dataSaiu) <= new Date(new Date().getFullYear(), i) && stringDate(dataEntrou) >= new Date(new Date().getFullYear(),i)
+        const continuaNaZiro = !entrouEsseMes && dataSaiu === '-' && stringDate(dataEntrou) < new Date(new Date().getFullYear(),i) || dataSaiu !== '-' && !entrouEsseMes && stringDate(dataSaiu) < new Date(new Date().getFullYear(), i) && stringDate(dataEntrou) >= new Date(new Date().getFullYear(),i)
         if(!entrouEsseMes && continuaNaZiro){
-            const parcela2 = listarParcela2(reajusteModeloParcela2 || modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
+            const parcela2 = listarParcela2(reajusteModeloParcela2 || modeloParcela2 || 'nenhum', baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i,
