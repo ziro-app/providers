@@ -21,7 +21,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
             })
         }
         const continuaNaZiro = !entrouEsseMes && dataSaiu === '-' && stringDate(dataEntrou) <= new Date(new Date().getFullYear(),i) || dataSaiu !== '-' && !entrouEsseMes && stringDate(dataSaiu) <= new Date(new Date().getFullYear(), i) && stringDate(dataEntrou) >= new Date(new Date().getFullYear(),i)
-        if(continuaNaZiro){
+        if(!entrouEsseMes && continuaNaZiro){
             const parcela2 = listarParcela2(reajusteModeloParcela2 || modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
             listPagamentos.push({
                 ano:new Date().getFullYear(),
