@@ -8,7 +8,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
     let listPagamentos = []
     for(let i = mesInicio; i <= mesFim; i++){
         const entrouEsseMes = (stringDate(dataEntrou)).getFullYear() === new Date().getFullYear() && (stringDate(dataEntrou)).getMonth()+1 === i
-        const [reajusteParcela1, reajusteModeloParcela2] = searchReajuste(apelido,new Date(new Date().getFullYear(),i), baseReajuste)
+        const {reajusteParcela1, reajusteModeloParcela2} = searchReajuste(apelido,new Date(new Date().getFullYear(),i), baseReajuste)
         if(entrouEsseMes){
             const coeficiente = calcCoeficiente(dataEntrou)
             const parcela2 = listarParcela2(reajusteModeloParcela2 || modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
