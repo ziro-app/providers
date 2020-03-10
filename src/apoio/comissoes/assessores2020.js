@@ -17,19 +17,23 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
 
 // Agrupamento dos valores necessários para o calculo
 const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
-    const filtrado = baseComissoes.filter(item =>
-        item.ano === ano && item.mes === mes && item.assessor === assessor
-    )
-    const receitas = filtrado.map((item) => item.receita)
-    const transacoes = filtrado.map(item => item.valor)
-    if(receitas[0] != undefined && transacoes[0] != undefined){
-        const somaTransacoes = transacoes.reduce(
-            (anterior, proximo) => anterior + proximo
+    if(baseComissoes){
+        const filtrado = baseComissoes.filter(item =>
+            item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
         )
-        const somaReceitas = receitas.reduce(
-            (anterior, proximo) => anterior + proximo
-        )
-        return { receita_mes: somaReceitas, transacionado_mes: somaTransacoes }
+        const receitas = filtrado.map((item) => item.receita)
+        const transacoes = filtrado.map(item => item.valor)
+        if(receitas[0] != undefined && transacoes[0] != undefined){
+            const somaTransacoes = transacoes.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            const somaReceitas = receitas.reduce(
+                (anterior, proximo) => anterior + proximo
+            )
+            return { receita_mes: somaReceitas, transacionado_mes: somaTransacoes }
+        }else{
+            return { receita_mes: [], transacionado_mes: [] }
+        }
     }else{
         return { receita_mes: [], transacionado_mes: [] }
     }
@@ -38,7 +42,7 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
 // Função "main"
 const assessor2020 = (baseComissoes, ano, mes, assessor) => {
     const { receita_mes, transacionado_mes } = transacoes_e_receitas(baseComissoes, ano, mes, assessor)
-    return calculoAssessor2020(transacionado_mes, receita_mes)
+    return Math.round(calculoAssessor2020(transacionado_mes, receita_mes) * 100) / 100
 }
 
 module.exports = assessor2020
