@@ -42,7 +42,7 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
 // Função "main"
 const assessor2020 = (baseComissoes, ano, mes, assessor) => {
     const { receita_mes, transacionado_mes } = transacoes_e_receitas(baseComissoes, ano, mes, assessor)
-    return calculoAssessor2020(transacionado_mes, receita_mes)
+    return Math.round(calculoAssessor2020(transacionado_mes, receita_mes) * 100) / 100
 }
 
 module.exports = assessor2020

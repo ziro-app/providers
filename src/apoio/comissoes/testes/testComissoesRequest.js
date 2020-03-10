@@ -21,23 +21,31 @@ const testeSheets = (expected, calculate, titulo,ano,mes) => {
 }
 
 const testeAssessor2020 = (baseComissoes) => {
-    testeSheets(4266.887000000001, assessor2020(baseComissoes, 2020, 1, 'Rubia'), 'Teste Assessor2020 Rubia 01/2020',2020,1)
+    testeSheets(4266.89, assessor2020(baseComissoes, 2020, 1, 'Rubia'), 'Teste Assessor2020 Rubia 01/2020',2020,1)
 }
 
 const testLogistica2019 = (baseComissoes) => {
-    testeSheets(243.2236499999999, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica2019 01/2020',2020,1)
+    testeSheets(243.22, logistica2019(baseComissoes, 2020, 1), 'Teste Logistica2019 01/2020',2020,1)
 }
 
 const testeCobrancas2019 = (baseComissoes) => {
-    testeSheets(279.84200999999985, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças2019 01/2020',2020,1)
+    testeSheets(279.84, cobranca2019(baseComissoes, 2020, 1), 'Teste Cobranças2019 01/2020',2020,1)
 }
 
 const testeVendas2020 = (baseComissoes) => {
-    testeSheets(1708.635, vendas2019(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas2019 Davi 01/2020',2020,1)
+    testeSheets(1708.64, vendas2019(baseComissoes, 2020, 1, 'FRANÇA'), 'Teste Vendas2019 Davi 01/2020',2020,1)
 }
 
-const testeAssessor2019 = (baseComissoes) => {
-    testeSheets(4520.26, assessor2019(baseComissoes, 2019, 10, 'Rubia'), 'Teste Assessor2019 Rubia 10/2019',2019,10)
+const testeAssessor20191 = (baseComissoes) => {
+    testeSheets(4520.12, assessor2019(baseComissoes, 2019, 10, 'Rubia'), 'Teste Assessor2019 Rubia 10/2019',2019,10)
+}
+
+const testeAssessor20192 = (baseComissoes) => {
+    testeSheets(3511.88, assessor2019(baseComissoes, 2019, 9, 'Rubia'), 'Teste Assessor2019 Rubia 9/2019',2019,10)
+}
+
+const testeAssessor20193 = (baseComissoes) => {
+    testeSheets(4219.90, assessor2019(baseComissoes, 2019, 8, 'Rubia'), 'Teste Assessor2019 Rubia 8/2019',2019,10)
 }
 
 const teste = async () => {
@@ -50,7 +58,9 @@ const teste = async () => {
         testLogistica2019(baseComissoes)
         testeCobrancas2019(baseComissoes)
         testeVendas2020(baseComissoes)
-        testeAssessor2019(baseAssessores)
+        testeAssessor20191(baseAssessores)
+        testeAssessor20192(baseAssessores)
+        testeAssessor20193(baseAssessores)
     } catch (error) {
         console.log(error)
     }

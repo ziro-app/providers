@@ -6,6 +6,8 @@
     "start": "netlify-lambda serve ./src/lambdas",
     "build": "netlify-lambda build ./src/lambdas",
     "test": "ava",
+    "testRespostaParcela2" : "node src/apoio/testResultParcelas2",
+    "testRespostaParcela1" : "node src/apoio/testResultParcela1",
     "testComissoesRequest": "node ./src/apoio/comissoes/testes/testComissoesRequest",
     "testAssessores2019": "node ./src/apoio/comissoes/testes/testAssessores2019",
     "testAssessores2020": "node ./src/apoio/comissoes/testes/testAssessores2020",

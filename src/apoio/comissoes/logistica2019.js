@@ -24,7 +24,7 @@ const receitas = (baseComissoes, ano, mes) => {
 // Função "main"
 const logistica2019 = (baseComissoes, ano, mes) => {
     const receita_mes_ziro = receitas(baseComissoes, ano, mes)
-    return calculoLogistica2019(receita_mes_ziro)
+    return Math.round(calculoLogistica2019(receita_mes_ziro) * 100) / 100
 }
 
 module.exports = logistica2019

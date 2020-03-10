@@ -25,7 +25,7 @@ const recebimento = (baseComissoes, ano, mes) => {
 // Função "main"
 const cobranca2019 = (baseComissoes, ano, mes) => {
     const receita_mes_ziro = recebimento(baseComissoes, ano, mes)
-    return calculoCobranca2019(receita_mes_ziro)
+    return Math.round(calculoCobranca2019(receita_mes_ziro) * 100) / 100
 }
 
   

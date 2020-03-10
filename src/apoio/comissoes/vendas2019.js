@@ -45,7 +45,7 @@ const vendas2020 = (baseComissoes, ano, mes, afiliado) => {
     const transacao_mes_afiliado = transacao_mes_afiliado_novo + transacao_mes_afiliado_antigo
     const receita_mes_novo_afiliado = receitaTransacoesNovo.receita_mes_afiliado
     const receita_mes_antigo_afiliado = receitaTransacoesAntigo.receita_mes_afiliado
-    return calculoVendas2020(transacao_mes_afiliado, receita_mes_novo_afiliado, receita_mes_antigo_afiliado)
+    return Math.round(calculoVendas2020(transacao_mes_afiliado, receita_mes_novo_afiliado, receita_mes_antigo_afiliado) * 100) / 100
 }
   
 module.exports = vendas2020

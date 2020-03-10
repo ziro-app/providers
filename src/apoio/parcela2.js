@@ -6,7 +6,7 @@ const vendas2019 = require('./comissoes/vendas2019')
 
 // Condicional de chamada da função de parcela2
 const listarParcela2 = (modeloParcela2, baseComissoes, baseAssessor, ano,mes,apelido) => {
-    if(modeloParcela2 === 'nenhum' || modeloParcela2 === '-') return 0
+    if(modeloParcela2 === 'nenhum') return 0
     if(modeloParcela2 === 'assessoria2020') return assessor2020(baseComissoes, ano, mes, apelido)
     if(modeloParcela2 === 'assessoria2019') return assessor2019(baseAssessor, ano, mes, apelido)
     if(modeloParcela2 === 'cobranca2019') return cobranca2019(baseComissoes, ano, mes)
