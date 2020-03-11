@@ -79,7 +79,7 @@ const assessor2019 = (baseComissoes, ano, mes, assessor) => {
     const receitas_mes_novo_cliente = receitasNovo(baseComissoes, ano, mes, assessor)
     const receita_mes_novo_afiliado = receitasNovoAfiliado(baseComissoes, ano, mes, assessor)
     const receita_mes_antigo = receitasAntigo(baseComissoes, ano, mes, assessor)
-    return Math.round(calculoAssessor2019(receitas_mes_novo_cliente,receita_mes_novo_afiliado,receita_mes_antigo) * 100) / 100
+    return calculoAssessor2019(receitas_mes_novo_cliente,receita_mes_novo_afiliado,receita_mes_antigo)
 }
 
 
