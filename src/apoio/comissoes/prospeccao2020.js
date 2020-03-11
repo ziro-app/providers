@@ -22,9 +22,9 @@ const receitas = (baseComissoes, ano, mes) => {
 }
   
 // Função "main"
-const propeccao2020 = (baseComissoes, ano, mes) => {
+const prospeccao2020 = (baseComissoes, ano, mes) => {
     const receita_mes_ziro = receitas(baseComissoes, ano, mes)
     return calculoProspeccao2020(receita_mes_ziro)
 }
 
-module.exports = propeccao2020
+module.exports = prospeccao2020
