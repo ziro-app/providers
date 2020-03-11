@@ -13,6 +13,8 @@ const testeCoef = (expected, titulo, apelido,dataProcurada,baseReajuste) => {
     else console.log('\x1b[31m%s\x1b[0m', `Simulação não está com o mesmo valor do esperado: Esperado:${esperado}, Simulado:${simulado}`)
 }
 
+// teste combinado entre coeficiente e reajuste
+
 testeCoef([4000,'Dev'], 'Teste calculo com função completa', 'João',new Date(2020,3),base)
 testeCoef([2500,'Assessor2020','Dev'], 'Teste calculo com função completa 2', 'João',new Date(2020,1),base)
 testeCoef([10000,'Banana','Dev'], 'Teste calculo com função completa 3', 'Bernardo',new Date(2020,1),base)
