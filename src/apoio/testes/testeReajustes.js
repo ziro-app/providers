@@ -1,4 +1,4 @@
-const reajustes = require('./searchReajuste')
+const reajustes = require('../searchReajuste')
 
 const base = [{cadastro:'0b8d5c2787b12438e31ce559cd173fd5', apelido:'João', data:'01/01/2020',escopo:'Dev',parcela1:2500, modeloParcela2:'Assessor2020'},{cadastro:'0b8d5c2787b12438e31ce559cd173fd5', apelido:'Bernardo', data:'01/01/2020',escopo:'Dev',parcela1:10000, modeloParcela2:'Banana'},{cadastro:'0b8d5c2787b12438e31ce559cd173fd5', apelido:'João', data:'01/03/2020',escopo:'Dev',parcela1:4000, modeloParcela2:'-'}]
 

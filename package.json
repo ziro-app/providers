@@ -6,17 +6,16 @@
     "start": "netlify-lambda serve ./src/lambdas",
     "build": "netlify-lambda build ./src/lambdas",
     "test": "ava",
-    "testRespostaParcela2" : "node src/apoio/testResultParcelas2",
-    "testRespostaParcela1" : "node src/apoio/testResultParcela1",
+    "testRespostaParcela2" : "node src/apoio/testes/testResultParcelas2",
+    "testRespostaParcela1" : "node src/apoio/testes/testResultParcela1",
     "testComissoesRequest": "node ./src/apoio/comissoes/testes/testComissoesRequest",
     "testAssessores2019": "node ./src/apoio/comissoes/testes/testAssessores2019",
     "testAssessores2020": "node ./src/apoio/comissoes/testes/testAssessores2020",
     "testCobranca2019": "node ./src/apoio/comissoes/testes/testCobranca2019",
     "testLogistica2019": "node ./src/apoio/comissoes/testes/testLogistica2019",
     "testVendas2019": "node ./src/apoio/comissoes/testes/testVendas2019",
-    "testListarPessoas": "node ./src/apoio/testListarPessoas",
-    "testCoeficiente": "node ./src/apoio/testeCoeficiente",
-    "testReajustes": "node ./src/apoio/testeReajustes"
+    "testCoeficiente": "node ./src/apoio/testes/testeCoeficiente",
+    "testReajustes": "node ./src/apoio/testes/testeReajustes"
   },
   "repository": {
     "type": "git",

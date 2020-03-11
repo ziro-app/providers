@@ -1,7 +1,7 @@
 const rp = require('request-promise-native')
 const arrayObject = require('@ziro/array-object')
-const listaParcela = require('./listarParcelas')
-const optionsBatchGet = require('./googlesheets/optionsbatchGet')
+const listaParcela = require('../listarParcelas')
+const optionsBatchGet = require('../googlesheets/optionsbatchGet')
 require('dotenv').config()
 
 const getEmployees = async () => {

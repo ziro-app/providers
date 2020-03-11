@@ -1,4 +1,4 @@
-const coeficiente = require('./coeficienteMes')
+const coeficiente = require('../coeficienteMes')
 
 const testeCoef = (expected, titulo, stringDate) => {
     const calculado = coeficiente(stringDate)
