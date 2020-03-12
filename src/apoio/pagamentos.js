@@ -9,13 +9,14 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
         const {reajusteParcela1, reajusteModeloParcela2} = searchReajuste(apelido,new Date(new Date().getFullYear(),i), baseReajuste)
         const coeficiente = calcCoeficiente(dataEntrou,dataSaiu,i)
         if(coeficiente){
-            const parcela2 = listarParcela2(reajusteModeloParcela2 || modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)
+            const resultParcela1 = Math.round((reajusteParcela1 || parcela1)*coeficiente * 100) / 100
+            const resultParcela2 = Math.round(listarParcela2(reajusteModeloParcela2 || modeloParcela2, baseComissoes, baseAssessor, new Date().getFullYear(), i, apelido)*100)/100
             listPagamentos.push({
                 ano:new Date().getFullYear(),
                 mes: i ,
                 apelido: apelido,
-                parcela1: Math.round((reajusteParcela1*coeficiente || parcela1*coeficiente) * 100) / 100,
-                parcela2: Math.round(parcela2 * 100) / 100
+                parcela1: resultParcela1,
+                parcela2: resultParcela2
             })
         }else{
             listPagamentos.push([])
