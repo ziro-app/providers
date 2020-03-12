@@ -4,9 +4,9 @@ const listaParcela = require('../listarParcelas')
 const optionsBatchGet = require('../googlesheets/optionsbatchGet')
 require('dotenv').config()
 
-function getAllIndexes(arr, val) {
+const getAllIndexes = (array, valor) => {
     var indexes = [], i = -1
-    while ((i = arr.indexOf(val, i+1)) != -1){
+    while ((i = array.indexOf(valor, i+1)) != -1){
         indexes.push(i)
     }
     return indexes
@@ -22,8 +22,6 @@ const getEmployees = async () => {
     const pago = arrayObject(dataPago)
     const simulado = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
     const simuladoFlat = simulado.flat()
-    // console.log('Simulado',simuladoFlat)
-    // console.log('Pago', pago)
     const arrayResposta = simuladoFlat.map(item => pago.find(correspondente => {
         return item.mes === correspondente.mes && item.ano === correspondente.ano && item.apelido === correspondente.apelido && item.parcela1 === correspondente.parcela1 && item.parcela2 === correspondente.parcela2
     }))
