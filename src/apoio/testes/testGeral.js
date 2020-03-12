@@ -4,14 +4,6 @@ const listaParcela = require('../listarParcelas')
 const optionsBatchGet = require('../googlesheets/optionsbatchGet')
 require('dotenv').config()
 
-const getAllIndexes = (array, valor) => {
-    var indexes = [], i = -1
-    while ((i = array.indexOf(valor, i+1)) != -1){
-        indexes.push(i)
-    }
-    return indexes
-}
-
 const getEmployees = async () => {
     const requests = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G','Valor Pago!A:N']))
     const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes, dataPago] = requests.valueRanges 
@@ -22,12 +14,14 @@ const getEmployees = async () => {
     const pago = arrayObject(dataPago)
     const simulado = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
     const simuladoFlat = simulado.flat()
-    const arrayResposta = simuladoFlat.map(item => pago.find(correspondente => {
-        return item.mes === correspondente.mes && item.ano === correspondente.ano && item.apelido === correspondente.apelido && item.parcela1 === correspondente.parcela1 && item.parcela2 === correspondente.parcela2
-    }))
-    const indexErros = getAllIndexes(arrayResposta,undefined)
-    const erros = indexErros.map(item => simuladoFlat[item])
-    console.log(erros)
+    const arrayResposta = simuladoFlat.map(item =>{
+        if(pago.find(correspondente => {return item.mes === correspondente.mes && item.ano === correspondente.ano && item.apelido === correspondente.apelido && item.parcela1 === correspondente.parcela1 && item.parcela2 === correspondente.parcela2})){
+            return 'Simulado e pago batem em todos valores'
+        }else{
+            return item
+        }
+    })
+    console.log(arrayResposta)
 }
 
 getEmployees()
