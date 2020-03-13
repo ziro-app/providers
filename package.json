@@ -6,6 +6,7 @@
     "start": "netlify-lambda serve ./src/lambdas",
     "build": "netlify-lambda build ./src/lambdas",
     "test": "ava",
+    "testGeral":"node src/apoio/testes/testGeral",
     "testRespostaParcela2" : "node src/apoio/testes/testResultParcelas2",
     "testRespostaParcela1" : "node src/apoio/testes/testResultParcela1",
     "testComissoesRequest": "node ./src/apoio/comissoes/testes/testComissoesRequest",
