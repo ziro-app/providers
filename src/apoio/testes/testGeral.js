@@ -15,10 +15,15 @@ const getEmployees = async () => {
     const simulado = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
     const simuladoFlat = simulado.flat()
     const arrayResposta = simuladoFlat.map(item =>{
-        if(pago.find(correspondente => {return item.mes === correspondente.mes && item.ano === correspondente.ano && item.apelido === correspondente.apelido && item.parcela1 === correspondente.parcela1 && item.parcela2 === correspondente.parcela2})){
+        const condicional = pago.find(correspondente => {return item.mes === correspondente.mes && item.ano === correspondente.ano && item.apelido === correspondente.apelido && item.parcela1 === correspondente.parcela1 && item.parcela2 === correspondente.parcela2})
+        const procurado = pago.find(correspondente => {return item.mes === correspondente.mes && item.ano === correspondente.ano && item.apelido === correspondente.apelido})
+        if(condicional){
             return 'Simulado e pago batem em todos valores'
         }else{
-            return item
+            return {
+                simulado:item,
+                pago:procurado
+            }
         }
     })
     console.log(arrayResposta)
