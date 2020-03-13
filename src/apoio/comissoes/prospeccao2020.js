@@ -1,5 +1,5 @@
 //Começou junto coma  entrada do Ronaldo
-const calculoProspeccao2020 = receita_mes_ziro => receita_mes_ziro * 0.001
+const calculoProspeccao2020 = receita_mes_ziro => receita_mes_ziro * 0.01
 
 // Agrupamento dos valores necessários para o calculo
 const receitas = (baseComissoes, ano, mes) => {
