@@ -36,8 +36,8 @@ const receitasAntigo = (baseComissoes, ano, mes, assessor) => {
     }
 }
 
-let arrayNovos = []
 const receitasNovo = (baseComissoes, ano, mes, assessor) => {
+    let arrayNovos = []
     if(baseComissoes){
         const filtrado = baseComissoes.filter(item =>
             item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase() && item.tipoCliente === 'Novo' && item.afiliado === 'NENHUM'
@@ -50,8 +50,8 @@ const receitasNovo = (baseComissoes, ano, mes, assessor) => {
 }
 
 // Função de apoio para o array dado
-let soma = 0
 const limite = (array) =>{
+    let soma = 0
     array.map((item) => {
         if(item*0.4 < 1000){
             soma += item*0.4
