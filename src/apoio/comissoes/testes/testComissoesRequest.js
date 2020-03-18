@@ -9,7 +9,7 @@ const assessor2019 = require('../assessores2019')
 require('dotenv').config()
 
 const testeSheets = (expected, calculate, titulo,ano,mes) => {
-    const calculado = calculate
+    const calculado = Math.round(calculate * 100) / 100
     const esperado = expected
     const diferenca = esperado - calculado
     console.log('\x1b[35m%s\x1b[0m',titulo)
@@ -45,7 +45,7 @@ const testeAssessor20192 = (baseComissoes) => {
 }
 
 const testeAssessor20193 = (baseComissoes) => {
-    testeSheets(4219.90, assessor2019(baseComissoes, 2019, 8, 'Rubia'), 'Teste Assessor2019 Rubia 8/2019',2019,10)
+    testeSheets(4413.01, assessor2019(baseComissoes, 2019, 8, 'Rubia'), 'Teste Assessor2019 Rubia 8/2019',2019,10)
 }
 
 const teste = async () => {

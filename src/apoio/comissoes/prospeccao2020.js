@@ -1,5 +1,5 @@
-//Lojistica - começou a ter comissão 09/2019
-const calculoLogistica2019 = receita_mes_ziro => receita_mes_ziro * 0.005
+//Começou junto coma  entrada do Ronaldo
+const calculoProspeccao2020 = receita_mes_ziro => receita_mes_ziro * 0.01
 
 // Agrupamento dos valores necessários para o calculo
 const receitas = (baseComissoes, ano, mes) => {
@@ -22,9 +22,9 @@ const receitas = (baseComissoes, ano, mes) => {
 }
   
 // Função "main"
-const logistica2019 = (baseComissoes, ano, mes) => {
+const prospeccao2020 = (baseComissoes, ano, mes) => {
     const receita_mes_ziro = receitas(baseComissoes, ano, mes)
-    return calculoLogistica2019(receita_mes_ziro)
+    return calculoProspeccao2020(receita_mes_ziro)
 }
 
-module.exports = logistica2019
+module.exports = prospeccao2020

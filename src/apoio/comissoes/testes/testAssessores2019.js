@@ -15,7 +15,7 @@ const testeAssessores2019 = (titulo,expected, base, ano, mes, assessor) => {
     else console.log('\x1b[31m%s\x1b[0m',`Simulação não está com o mesmo valor do esperado, diferença: ${diferenca}`)
 }
 
-testeAssessores2019('Teste de valor',920,base,2019,1,'Rubia')
+testeAssessores2019('Teste de valor',2320,base,2019,1,'Rubia')
 testeAssessores2019('Teste de data errada', 0,base,2019,22,'Rubia')
 testeAssessores2019('Teste de nome errado', 0,base,2019,2,'AUHdsjand~sa')
 testeAssessores2019('Teste de nome numerico', 0,base,2019,2,1231)

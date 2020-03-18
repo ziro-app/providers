@@ -8,13 +8,14 @@ require('dotenv').config()
 
 const getEmployees = async () => {
     try {
-        const results = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G']))
-        const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes] = results.valueRanges 
+        const results = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G','Apoio Comissão Cobrança 2019']))
+        const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes,dataCobranca] = results.valueRanges 
         const baseComissoes = arrayObject(dataBaseSheets)
         const baseAssessores = arrayObject(dataAssessores)
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
-        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
+        const baseCobranca = arrayObject(dataCobranca)
+        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes,baseCobranca)
         const sheetsData = objectToArray(parcelas2)
         return {
             statusCode: 200,
