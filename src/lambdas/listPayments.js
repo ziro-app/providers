@@ -8,7 +8,7 @@ require('dotenv').config()
 
 const getEmployees = async () => {
     try {
-        const results = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G']))
+        const results = await rp(optionsBatchGet(['Base Comissões!A:U','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G']))
         const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes] = results.valueRanges 
         const baseComissoes = arrayObject(dataBaseSheets)
         const baseAssessores = arrayObject(dataAssessores)
