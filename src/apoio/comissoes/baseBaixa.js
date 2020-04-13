@@ -2,16 +2,7 @@ const baseNova = baseAntiga => {
     const filtro = baseAntiga.filter(value => {
         return value.status === 'Baixado'
     })
-    const newBase = filtro.map(value => {
-        return {
-            ano: value.anoBaixa,
-            mes: value.mesBaixa,
-            assessor: value.assessor,
-            receita: value.receita,
-            valor: value.valor
-        }
-    })
-    return newBase
+    return filtro
 }
   
 const baseGeral = (baseComissoes, mes, ano) => {
