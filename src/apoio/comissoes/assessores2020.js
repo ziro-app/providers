@@ -4,7 +4,7 @@
 //200000	900
 //300000	1200
 //400000	1400
-
+const baseBaixa = require('./baseBaixa')
 // Calculo com da comissão
 const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     const base = receita_mes * 0.1
@@ -16,8 +16,9 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
 }
 
 // Agrupamento dos valores necessários para o calculo
-const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
-    if(baseComissoes){
+const transacoes_e_receitas = (baseAntiga, ano, mes, assessor) => {
+    if(baseAntiga){
+        const baseComissoes = baseBaixa(baseAntiga,mes,ano)
         const filtrado = baseComissoes.filter(item =>
             item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
         )
