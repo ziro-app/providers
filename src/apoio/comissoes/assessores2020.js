@@ -20,8 +20,14 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
         const filtrado = baseComissoes.filter(item =>
             item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
         )
-        const receitas = filtrado.map((item) => item.receita)
-        const transacoes = filtrado.map(item => item.valor)
+        const receitas = filtrado.map((item) => {
+            if(item.receita) return item.receita
+            return 0
+        })
+        const transacoes = filtrado.map(item => {
+            if(item.valor) return item.valor
+            return 0
+        })
         if(receitas[0] != undefined && transacoes[0] != undefined){
             const somaTransacoes = transacoes.reduce(
                 (anterior, proximo) => anterior + proximo

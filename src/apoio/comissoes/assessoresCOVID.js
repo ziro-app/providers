@@ -12,18 +12,27 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     if (transacionado_mes >= 300000) return base + 600
     if (transacionado_mes >= 200000) return base + 450
     if (transacionado_mes >= 100000) return base + 250
-    if (transacionado_mes >= 50000) return base + 150
+    if (transacionado_mes >= 50000) return base + 125
     return base
 }
 
 // Agrupamento dos valores necessários para o calculo
 const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
     if(baseComissoes){
-        const filtrado = baseComissoes.filter(item =>
-            item.status === 'Baixado' && item.anoBaixa === ano && item.mesBaixa === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
-        )
-        const receitas = filtrado.map((item) => item.receita)
-        const transacoes = filtrado.map(item => item.valor)
+        const filtradoTransacoes = baseComissoes.filter(item => {
+            return item.ano === ano && item.mes === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
+        })
+        const filtrado = baseComissoes.filter(item => {
+            return item.ano >= 2020 && item.mes >= 3 && item.anoBaixa === ano && item.mesBaixa === mes && item.assessor.toLowerCase() === assessor.toLowerCase()
+        })
+        const receitas = filtrado.map((item) => {
+            if(item.receita) return item.receita
+            return 0
+        })
+        const transacoes = filtradoTransacoes.map(item => {
+            if(item.valor) return item.valor
+            return 0
+        })
         if(receitas[0] != undefined && transacoes[0] != undefined){
             const somaTransacoes = transacoes.reduce(
                 (anterior, proximo) => anterior + proximo
