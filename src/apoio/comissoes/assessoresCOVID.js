@@ -33,6 +33,7 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
             if(item.valor) return item.valor
             return 0
         })
+        console.log(receitas, transacoes)
         if(receitas[0] != undefined && transacoes[0] != undefined){
             const somaTransacoes = transacoes.reduce(
                 (anterior, proximo) => anterior + proximo
