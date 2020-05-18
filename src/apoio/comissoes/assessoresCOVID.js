@@ -12,7 +12,7 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     if (transacionado_mes >= 300000) return base + 600
     if (transacionado_mes >= 200000) return base + 450
     if (transacionado_mes >= 100000) return base + 250
-    if (transacionado_mes >= 50000) return base + 125
+    if (transacionado_mes >= 50000) return base + 150
     return base
 }
 
