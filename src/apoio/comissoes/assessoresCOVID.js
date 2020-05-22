@@ -4,7 +4,7 @@
 // Venda 300000      600
 // Venda 200000      450
 // Venda 100000      250
-// Venda 50000       150
+// Venda 50000       125
 // Calculo com da comissão
 const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     const base = receita_mes * 0.1
@@ -12,7 +12,7 @@ const calculoAssessor2020 = (transacionado_mes, receita_mes) => {
     if (transacionado_mes >= 300000) return base + 600
     if (transacionado_mes >= 200000) return base + 450
     if (transacionado_mes >= 100000) return base + 250
-    if (transacionado_mes >= 50000) return base + 150
+    if (transacionado_mes >= 50000) return base + 125
     return base
 }
 
