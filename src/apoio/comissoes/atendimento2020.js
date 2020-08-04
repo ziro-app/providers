@@ -14,7 +14,7 @@ const recebimento = (baseTransacoes, ano, mes) => {
             const somaTransacionado = transacionado.reduce(
                 (anterior, proximo) => anterior + proximo
             )
-            return somaTransacionado
+            return Number(somaTransacionado.replace('.','').replace(',','.'))
         }else{
             return 0
         }
