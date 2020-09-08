@@ -5,15 +5,14 @@ const optionsBatchGet = require('../googlesheets/optionsbatchGet')
 require('dotenv').config()
 
 const getEmployees = async () => {
-    const requests = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G','Valor Pago!A:N','Apoio Comissão Cobrança 2019']))
-    const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes, dataPago,dataCobranca] = requests.valueRanges 
+    const requests = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G','Valor Pago!A:N']))
+    const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes, dataPago] = requests.valueRanges 
     const basePago = arrayObject(dataPago)
     const baseComissoes = arrayObject(dataBaseSheets)
     const baseAssessores = arrayObject(dataAssessores)
     const basePessoas = arrayObject(dataBasePessoas)
     const baseReajustes = arrayObject(dataBaseReajustes)
-    const baseCobranca = arrayObject(dataCobranca)
-    const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes,baseCobranca)
+    const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes)
     const arrayParcelas2Simuladas = parcelas2.map(item => item.map(item => item.parcela2))
     const simulados = arrayParcelas2Simuladas.flat()
     console.log('Simulado',simulados)

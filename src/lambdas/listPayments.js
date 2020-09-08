@@ -2,24 +2,22 @@ const rp = require('request-promise-native')
 const arrayObject = require('@ziro/array-object')
 const listaParcela = require('../apoio/listarParcelas')
 const optionsBatchGet = require('../apoio/googlesheets/optionsbatchGet')
-const objectToArray = require('@ziro/object-array')
 const main = require('../templates/main')
 require('dotenv').config()
 
 const getEmployees = async () => {
     try {
-        const results = await rp(optionsBatchGet(['Base Comissões!A:Q','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G','Apoio Comissão Cobrança 2019']))
-        const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes,dataCobranca] = results.valueRanges 
+        const results = await rp(optionsBatchGet(['Base Comissões!A:U','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G', 'Apoio Comissões Atendimento 2020!A:C']))
+        const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes, dataBaseTransacoes] = results.valueRanges 
         const baseComissoes = arrayObject(dataBaseSheets)
         const baseAssessores = arrayObject(dataAssessores)
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
-        const baseCobranca = arrayObject(dataCobranca)
-        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes,baseCobranca)
-        const sheetsData = objectToArray(parcelas2)
+        const baseTransacoes = arrayObject(dataBaseTransacoes)
+        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes, baseTransacoes)
         return {
             statusCode: 200,
-            body: JSON.stringify(sheetsData)
+            body: JSON.stringify(parcelas2.flat())
         }
     } catch (error) {
         return {
