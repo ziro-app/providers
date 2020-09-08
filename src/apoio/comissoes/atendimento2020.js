@@ -10,11 +10,8 @@ const recebimento = (baseTransacoes, ano, mes) => {
             item.ano === ano && item.mes === mes
         )
         const transacionado = filtrado.map(item => item.transacionado)
-        if(transacionado){
-            const somaTransacionado = transacionado.reduce(
-                (anterior, proximo) => anterior + proximo
-            )
-            return Number(somaTransacionado.replace('.','').replace(',','.'))
+        if(transacionado[0]){
+            return transacionado[0]
         }else{
             return 0
         }
