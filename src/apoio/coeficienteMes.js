@@ -6,12 +6,15 @@ const calculoUltimoDia = (ano,mes) => {
     return finalMes
 } 
 
-const coeficiente = (dataEntrou,dataSaiu,mes) =>{
+const coeficiente = (dataEntrou,dataSaiu,mes, apelido) =>{
     if(dataEntrou){
         if(dataEntrou.toString().includes('/') &&  (dataSaiu.toString().includes('/') || dataSaiu.toString().includes('-')) || dataEntrou.toString().includes('-') && (dataSaiu.toString().includes('/') || dataSaiu.toString().includes('-'))){
             const entrouEsseMes = (stringDate(dataEntrou)).getFullYear() === new Date().getFullYear() && (stringDate(dataEntrou)).getMonth()+1 === mes
             const saiuEsseMes = (stringDate(dataSaiu)).getFullYear() === new Date().getFullYear() && (stringDate(dataSaiu)).getMonth()+1 === mes
             const continuaNaZiro =  dataSaiu === '-' && stringDate(dataEntrou) < new Date(new Date().getFullYear(),mes) || dataSaiu !== '-' && stringDate(dataSaiu) > new Date(new Date().getFullYear(),mes) && stringDate(dataEntrou) < new Date(new Date().getFullYear(),mes)
+            if(apelido === 'Rubia'){
+                return 1
+            }
             if(entrouEsseMes && !saiuEsseMes){
                 const data = stringDate(dataEntrou)
                 const ano = data.getUTCFullYear()
