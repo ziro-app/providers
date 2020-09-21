@@ -11,7 +11,8 @@ const recebimento = (baseTransacoes, ano, mes) => {
         )
         const transacionado = filtrado.map(item => item.transacionado)
         if(transacionado[0]){
-            return transacionado[0]
+            const somaTransacionado = transacionado.reduce((anterior, posterior) => anterior + posterior)
+            return somaTransacionado
         }else{
             return 0
         }

@@ -2,6 +2,17 @@ const atendimento2020 = require('../atendimento2020')
 
 const base2020 = [
     {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:275},
+    {ano:2020, mes:2, transacionado:90028.74},
     {ano:2020, mes:7, transacionado:90028.74}
 ]
 
@@ -19,4 +30,4 @@ const testeAtendimento2020 = (titulo,expected, base, ano, mes) => {
     else console.log('\x1b[31m%s\x1b[0m',`Simulação não está com o mesmo valor do esperado, diferença: ${diferenca}`)
 }
 
-testeAtendimento2020('Teste de valor',135.04311,base2020,2020,7)
+testeAtendimento2020('Teste de valor',139.58061,base2020,2020,2)

@@ -7,14 +7,19 @@ require('dotenv').config()
 
 const getEmployees = async () => {
     try {
-        const results = await rp(optionsBatchGet(['Base Comissões!A:U','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G', 'Apoio Comissões Atendimento 2020!A:C']))
-        const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes, dataBaseTransacoes] = results.valueRanges 
+        const promiseResults = rp(optionsBatchGet(['Base Comissões!A:U','Apoio Comissões Assessores 2019!A:H','Pessoas!A:V', 'Reajustes!A:G']))
+        const promiseResultsVendedores = rp(optionsBatchGet(['Apoio Comissões Atendimento 2020!A:E', 'Base Vendedores!A:C', 'Base Fabricantes!A:T']))
+        const [results, resultsVendedores] = await Promise.all([promiseResults, promiseResultsVendedores])
+        const [dataBaseTransacoes, dataBaseVendedores, dataBaseFabricantes] = resultsVendedores.valueRanges
+        const [dataBaseSheets,dataAssessores,dataBasePessoas, dataBaseReajustes] = results.valueRanges 
         const baseComissoes = arrayObject(dataBaseSheets)
         const baseAssessores = arrayObject(dataAssessores)
         const basePessoas = arrayObject(dataBasePessoas)
         const baseReajustes = arrayObject(dataBaseReajustes)
         const baseTransacoes = arrayObject(dataBaseTransacoes)
-        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes, baseTransacoes)
+        const baseVendedores = arrayObject(dataBaseVendedores)
+        const baseFabricantes = arrayObject(dataBaseFabricantes)
+        const parcelas2 = listaParcela(basePessoas, baseComissoes, baseAssessores, baseReajustes, baseTransacoes, baseVendedores, baseFabricantes)
         return {
             statusCode: 200,
             body: JSON.stringify(parcelas2.flat())
