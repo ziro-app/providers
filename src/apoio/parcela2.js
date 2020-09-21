@@ -19,6 +19,7 @@ const listarParcela2 = (modeloParcela2, baseComissoes, baseAssessor, ano,mes,ape
     if(modeloParcela2 === 'assessoresCOVID') return assessoresCOVID(baseComissoes, ano, mes, apelido)
     if(modeloParcela2 === 'atendimento2020') return atendimento2020(baseTransacoes, ano, mes)
     if(modeloParcela2 === 'assessoria20202') return assessor20202(baseComissoes, ano, mes, apelido)
+    if(modeloParcela2 === 'cobranca2020') return cobranca2020(baseComissoes, ano, mes)
     if(modeloParcela2 === 'vendedores2020') return vendedores2020(baseTransacoes, baseVendedores, baseFabricantes, mes, ano, apelido)
 }
 
