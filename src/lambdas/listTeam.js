@@ -6,7 +6,7 @@ require('dotenv').config()
 
 const getTeam = async () => {
     try {
-        const promiseResults = rp(optionsBatchGet(['Pessoas!A:V', 'Reajustes!A:G']))
+        const promiseResults = rp(optionsBatchGet(['Pessoas!A:AA', 'Reajustes!A:G']))
         const [results] = await Promise.all([promiseResults])
         const [dataPessoas,dataReajuste] = results.valueRanges 
         const basePessoas = arrayObject(dataPessoas)
@@ -26,8 +26,8 @@ const getTeam = async () => {
                 const arrayEscopo = reajustesFilter[0].reajustes.map(reajuste => reajuste.escopo).filter(item => item !== '-')
                 const arrayModeloParcela2 = reajustesFilter[0].reajustes.map(reajuste => reajuste.modeloParcela2).filter(item => item !== '-')
                 const parcela1 = arrayParcela1[0] ? arrayParcela1[arrayParcela1.length-1] : baseFilter[0].parcela1
-                const escopo = arrayParcela1[0] ? arrayEscopo[arrayEscopo.length-1] : baseFilter[0].escopo
-                const modeloParcela2 = arrayParcela1[0] ? arrayModeloParcela2[arrayModeloParcela2.length-1] : baseFilter[0].modeloParcela2
+                const escopo = arrayEscopo[0] ? arrayEscopo[arrayEscopo.length-1] : baseFilter[0].escopo
+                const modeloParcela2 = arrayModeloParcela2[0] ? arrayModeloParcela2[arrayModeloParcela2.length-1] : baseFilter[0].modeloParcela2
                 return {...baseFilter[0], parcela1, escopo, modeloParcela2}
             }else{
                 return baseFilter[0]
@@ -35,7 +35,19 @@ const getTeam = async () => {
         })
         return {
             statusCode: 200,
-            body: JSON.stringify(resultNewBase)
+            body: JSON.stringify(resultNewBase.map(item => {
+                const {cadastro, nome, apelido, dataInicio, dataFim, parcela1, modeloParcela2, escopo } = item
+                return {
+                    cadastro,
+                    nome,
+                    apelido,
+                    dataInicio,
+                    dataFim,
+                    parcela1,
+                    modeloParcela2,
+                    escopo
+                }
+            }))
         }
     } catch (error) {
         return {
