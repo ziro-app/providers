@@ -8,9 +8,14 @@ const getTeam = async () => {
     try {
         const promiseResults = rp(optionsBatchGet(['Pessoas!A:AA', 'Reajustes!A:G']))
         const [results] = await Promise.all([promiseResults])
-        const [dataPessoas,dataReajuste] = results.valueRanges 
+        const [dataPessoas,dataReajuste] = results.valueRanges
         const basePessoas = arrayObject(dataPessoas)
-        const baseReajuste = arrayObject(dataReajuste)
+        const reajusteAll = arrayObject(dataReajuste)
+        const filterReajuste  = reajusteAll.filter(rowReajuste => {
+            const [data, mes, ano] = rowReajuste.data.split('/')
+            return mes <= new Date().getMonth()+1 && ano <= new Date().getFullYear()
+        })
+        const baseReajuste = filterReajuste
         const nomePessoas = basePessoas.map(item => item.apelido)
         const reajustes = nomePessoas.map(pessoa => {
             const listaReajustes = baseReajuste.filter(reajuste => reajuste.apelido === pessoa)
