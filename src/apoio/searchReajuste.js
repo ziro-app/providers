@@ -1,4 +1,3 @@
-
 const stringDate = require('@ziro/string-to-date')
 
 const searchReajuste = (apelido, dataProcurada, baseReajuste) => {

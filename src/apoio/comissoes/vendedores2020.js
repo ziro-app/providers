@@ -119,14 +119,17 @@ const datas_cadastros_completos = (
 
 const vendedores2020 = (baseTransacoes, baseVendedores, baseFabricantes, mes, ano, vendedor) => {
     const fabricantesVendedor = baseVendedores.filter((cadastro) => cadastro.vendedor === vendedor).map((item) => item.fabricante)
-    const baseTransacoesVendedor = baseTransacoes.filter((row) => fabricantesVendedor.includes(row.Fabricante.toUpperCase()))
-    const primeirosQuinhentos = qtd_primeira_transacao_quinhentos(baseTransacoesVendedor,fabricantesVendedor,mes,ano)
-    const {datasDez, datasCem} = mesesPrimeiros(fabricantesVendedor, baseTransacoesVendedor)
-    const primeirosDezMil = qtd_primeiros_dezmil(datasDez, mes, ano)
-    const primeirosCemMil = qtd_primeiros_cemmil(datasCem, mes, ano)
-    const datasCadastros = datas_cadastros_completos(baseFabricantes, baseVendedores, vendedor)
-    const novosCadastros = datasCadastros.filter(data => data.mes === mes && data.ano === ano).length
-    return calculoVendedores2020(novosCadastros, primeirosQuinhentos, primeirosDezMil, primeirosCemMil)
+    if(fabricantesVendedor[0]){
+        const baseTransacoesVendedor = baseTransacoes.filter((row) => fabricantesVendedor.includes(row.Fabricante.toUpperCase()))
+        const primeirosQuinhentos = qtd_primeira_transacao_quinhentos(baseTransacoesVendedor,fabricantesVendedor,mes,ano)
+        const {datasDez, datasCem} = mesesPrimeiros(fabricantesVendedor, baseTransacoesVendedor)
+        const primeirosDezMil = qtd_primeiros_dezmil(datasDez, mes, ano)
+        const primeirosCemMil = qtd_primeiros_cemmil(datasCem, mes, ano)
+        const datasCadastros = datas_cadastros_completos(baseFabricantes, baseVendedores, vendedor)
+        const novosCadastros = datasCadastros.filter(data => data.mes === mes && data.ano === ano).length
+        return calculoVendedores2020(novosCadastros, primeirosQuinhentos, primeirosDezMil, primeirosCemMil)
+    }
+    return 0
 }
   
 module.exports = vendedores2020

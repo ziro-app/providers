@@ -18,7 +18,7 @@ const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, 
                 parcela1: resultParcela1,
                 parcela2: resultParcela2,
                 modeloParcela2: reajusteModeloParcela2 || modeloParcela2,
-                escopo: escopo || reajusteEscopo
+                escopo: reajusteEscopo || escopo
             })
         }else{
             listPagamentos.push([])
