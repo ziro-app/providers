@@ -4,7 +4,7 @@ const optionsGet = (range) =>{
     const password = process.env.pdwSheets
     const auth = 'Basic ' + new Buffer.from(username + ':' + password).toString('base64')
     return {
-        method: 'GET',
+        method: 'POST',
         url:url,
         headers: {
             'Origin': 'https://ziro.app',
