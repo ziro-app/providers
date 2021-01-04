@@ -23,8 +23,12 @@ const recebimento = (baseTransacoes, ano, mes) => {
   
 // Função "main"
 const atendimento2020 = (baseTransacoes, ano, mes) => {
-    const transacoes_mes_ziro = recebimento(baseTransacoes, ano, mes)
-    return calculoAtendimento2020(transacoes_mes_ziro)
+    try {
+        const transacoes_mes_ziro = recebimento(baseTransacoes, ano, mes)
+        return calculoAtendimento2020(transacoes_mes_ziro)
+    } catch (error) {
+        console.log('erro no calculo de atendimento 2020')
+    }
 }
 
   

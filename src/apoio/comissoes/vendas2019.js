@@ -38,14 +38,18 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, afiliado, tipoCliente) =
   
 // Função "main"
 const vendas2020 = (baseComissoes, ano, mes, afiliado) => {
-    const receitaTransacoesNovo = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Novo')
-    const receitaTransacoesAntigo = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Antigo')
-    const transacao_mes_afiliado_novo = receitaTransacoesNovo.transacao_mes_afiliado
-    const transacao_mes_afiliado_antigo = receitaTransacoesAntigo.transacao_mes_afiliado
-    const transacao_mes_afiliado = transacao_mes_afiliado_novo + transacao_mes_afiliado_antigo
-    const receita_mes_novo_afiliado = receitaTransacoesNovo.receita_mes_afiliado
-    const receita_mes_antigo_afiliado = receitaTransacoesAntigo.receita_mes_afiliado
-    return calculoVendas2020(transacao_mes_afiliado, receita_mes_novo_afiliado, receita_mes_antigo_afiliado)
+    try {
+        const receitaTransacoesNovo = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Novo')
+        const receitaTransacoesAntigo = transacoes_e_receitas(baseComissoes, ano, mes, afiliado, 'Antigo')
+        const transacao_mes_afiliado_novo = receitaTransacoesNovo.transacao_mes_afiliado
+        const transacao_mes_afiliado_antigo = receitaTransacoesAntigo.transacao_mes_afiliado
+        const transacao_mes_afiliado = transacao_mes_afiliado_novo + transacao_mes_afiliado_antigo
+        const receita_mes_novo_afiliado = receitaTransacoesNovo.receita_mes_afiliado
+        const receita_mes_antigo_afiliado = receitaTransacoesAntigo.receita_mes_afiliado
+        return calculoVendas2020(transacao_mes_afiliado, receita_mes_novo_afiliado, receita_mes_antigo_afiliado)
+    } catch (error) {
+        console.log('erro no calculo de vendas2019')
+    }
 }
   
 module.exports = vendas2020

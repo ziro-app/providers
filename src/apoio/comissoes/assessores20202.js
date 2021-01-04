@@ -28,8 +28,12 @@ const transacoes_e_receitas = (baseComissoes, ano, mes, assessor) => {
   
 // Função "main"
 const assessor20202 = (baseComissoes, ano, mes, assessor) => {
-    const { receita_mes } = transacoes_e_receitas(baseComissoes, ano, mes, assessor)
-    return calculoAssessor20202(receita_mes)
+    try {
+        const { receita_mes } = transacoes_e_receitas(baseComissoes, ano, mes, assessor)
+        return calculoAssessor20202(receita_mes)
+    } catch (error) {
+        console.log('erro no calculo dos assessores 20202')
+    }
 }
 
 module.exports = assessor20202

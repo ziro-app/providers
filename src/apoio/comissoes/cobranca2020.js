@@ -1,6 +1,6 @@
 //Cobranca começou a ter comissão 09/2019
 const calculoCobranca2020 = cobrancas_mes => {
-    if(cobrancas_mes >= 40000){
+    if(cobrancas_mes !== 0 && cobrancas_mes >= 40000){
         return cobrancas_mes * 0.007
     }else{
         return 0
@@ -8,9 +8,9 @@ const calculoCobranca2020 = cobrancas_mes => {
 }
 
 const recebimento = (baseComissoes, ano, mes) => {
-    if(baseComissoes){
+    if(baseComissoes[0]){
         const filtrado = baseComissoes.filter(item =>
-            item.anoRecebido === ano && item.mesRecebido === mes
+            item.anoBaixa === ano && item.mesBaixa === mes
         )
         const recebido = filtrado.map(item => item.recebido)
         if(recebido){
@@ -28,8 +28,12 @@ const recebimento = (baseComissoes, ano, mes) => {
   
 // Função "main"
 const cobranca2020 = (baseComissoes, ano, mes) => {
-    const receita_mes_ziro = recebimento(baseComissoes, ano, mes)
-    return calculoCobranca2020(receita_mes_ziro)
+    try {
+        const receita_mes_ziro = recebimento(baseComissoes, ano, mes)
+        return calculoCobranca2020(receita_mes_ziro)
+    } catch (error) {
+        console.log('erro ao tentar calcular cobranca2020')
+    }
 }
 
   

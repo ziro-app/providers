@@ -23,8 +23,12 @@ const receitas = (baseComissoes, ano, mes) => {
   
 // Função "main"
 const logistica2019 = (baseComissoes, ano, mes) => {
-    const receita_mes_ziro = receitas(baseComissoes, ano, mes)
-    return calculoLogistica2019(receita_mes_ziro)
+    try {
+        const receita_mes_ziro = receitas(baseComissoes, ano, mes)
+        return calculoLogistica2019(receita_mes_ziro)
+    } catch (error) {
+        console.log('erro no calculo de logistica 2019')
+    }
 }
 
 module.exports = logistica2019
