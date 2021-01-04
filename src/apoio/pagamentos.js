@@ -6,7 +6,8 @@ const searchReajuste = require('./searchReajuste')
 const pagamentos = (mesInicio, mesFim, parcela1, modeloParcela2, baseComissoes, baseAssessor,apelido, dataEntrou, dataSaiu, baseReajuste, baseTransacoes, baseVendedores, baseFabricantes, escopo) => {
     let listPagamentos = []
     for(let ano = 2020; ano <= new Date().getFullYear(); ano++){
-        for(let mes = mesInicio; mes <= mesFim; mes++){
+        const mesFinal = ano === new Date().getFullYear() ? mesFim : 12
+        for(let mes = mesInicio; mes <= mesFinal; mes++){
             const {reajusteParcela1, reajusteModeloParcela2, reajusteEscopo} = searchReajuste(apelido, new Date(ano,mes), baseReajuste)
             const coeficiente = calcCoeficiente(dataEntrou,dataSaiu,mes,apelido)
             if(coeficiente){
