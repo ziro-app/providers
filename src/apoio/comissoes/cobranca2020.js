@@ -10,7 +10,7 @@ const calculoCobranca2020 = cobrancas_mes => {
 const recebimento = (baseComissoes, ano, mes) => {
     if(baseComissoes[0]){
         const filtrado = baseComissoes.filter(item =>
-            item.anoBaixa === ano && item.mesBaixa === mes
+            item.anoRecebido === ano && item.mesRecebido === mes
         )
         const recebido = filtrado.map(item => item.recebido)
         if(recebido){
